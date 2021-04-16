@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "sports",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"football_ground_sports", "Name": "Football Ground" }, "geometry": { "type": "Point", "coordinates": [ 85.536973220688225, 27.618585861873658 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"basket_ball_court_sports","Name": "Basketball Court" }, "geometry": { "type": "Point", "coordinates": [ 85.536406371309752, 27.618268227375395 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"swimming_pool_sports", "Name": "Swimming Pool" }, "geometry": { "type": "Point", "coordinates": [ 85.536797642874944, 27.619390014664202 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"gym_sports", "Name": "Gym" }, "geometry": { "type": "Point", "coordinates": [ 85.535727452794106, 27.617406698043364 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"social_hall_sports", "Name": "Social Hall" }, "geometry": { "type": "Point", "coordinates": [ 85.536315792328253, 27.617771131075358 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"volley_ball_sports", "Name": "Volleyball Court" }, "geometry": { "type": "Point", "coordinates": [ 85.537329271855029, 27.617465986040159 ] } }
+]
+}

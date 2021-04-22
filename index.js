@@ -38,6 +38,8 @@ import * as easing from 'ol/easing';
 import * as stringSimilarity from 'string-similarity';
 import Overlay from 'ol/Overlay';
 
+// document.querySelector('.ol-zoom').style.top = "6rem";
+
 
 
 
@@ -86,7 +88,8 @@ const panoDivChangeStyle2 = () => {
 }
 // const panoImage = document.querySelector('#popup-content');
 
-const panoFunction = (imagePan) => {
+const panoFunction = (imagePan, divElement) => {
+  var panoContainer = document.getElementById(divElement);
   content.style.overflow = "hidden";
   panoContainer.innerHTML = "";
   panoDivChangeStyle1();
@@ -822,7 +825,9 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
   panoContainer.innerHTML = ""
   panoDivChangeStyle2();
   content.style.overflow = "auto";
+  Btable.style.display = "block";
   Btable.innerHTML = "";
+  document.getElementById('InfoDiv').innerHTML = ""
   var row0 = Btable.insertRow(0);
   var row1 = Btable.insertRow(1);
   var row2 = Btable.insertRow(2);
@@ -846,7 +851,42 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
 
   cell01.innerHTML = "Building Name";
+
+  // cell01.addEventListener("click", () => {
+  //   panoContainer.innerHTML = "";
+  // });
+
   cell02.innerHTML = Building;
+  cell02.onmouseover = () => {
+    cell02.style.textDecoration = "underline";
+  }
+  cell02.onmouseout = () => {
+    cell02.style.textDecoration = "none";
+  }
+  cell02.addEventListener("click", () => {
+    document.getElementById('BuildingTable').style.display = "none";
+    var BackBtn = document.createElement("BUTTON");
+
+    var backImage = document.createElement("img");
+    backImage.style.width = "20px"
+    backImage.src = "image/left-arrow.png";
+
+    // var BtnText = document.createTextNode("Back");
+    BackBtn.appendChild(backImage);
+    document.getElementById('InfoDiv').innerHTML = "this is " + Building;
+
+    document.getElementById('InfoDiv').appendChild(BackBtn);
+    BackBtn.style.position = "absolute"
+    BackBtn.style.bottom = "5px";
+    BackBtn.style.left = "5px";
+
+    BackBtn.addEventListener("click", () => {
+      panoContainer.innerHTML = "";
+      document.getElementById('InfoDiv').removeChild(BackBtn);
+      document.getElementById('BuildingTable').style.display = "block";
+    });
+
+  });
 
   cell11.innerHTML = "Office 1";
   cell12.innerHTML = Office1
@@ -912,7 +952,7 @@ map.on('click', evt => {
   if (PointName) {
 
     overlay.setPosition(coordinate);
-    panoFunction(PointName);
+    panoFunction(PointName, "panoDiv");
 
 
   }
@@ -972,10 +1012,7 @@ document.getElementById('sports').onclick = () => {
 };
 
 
-var kuGateLayer = document.getElementById('ku_gate')
-kuGateLayer.onclick = () => {
-  openPanoFunctionLayer('Point_name', 'KU gate', pointSource)
-};
+
 // document.getElementById('ku_corner_campus').onclick = () => {
 //   overlay.setPosition(getCoordinates('name', 'ku_corner', campusSource));
 // }
@@ -1015,11 +1052,12 @@ document.querySelectorAll('.layerToggler').forEach(el => {
       overlay.setPosition(getCoordinates('name_id', evt.target.id, parkingSource));
     }
     else if (evt.target.id.slice(StrLength - 6, StrLength) == "campus") {
+      document.getElementById('panoDiv').innerHTML = "";
+      document.getElementById('BuildingTable').innerHTML = "";
       overlay.setPosition(getCoordinates('name_id', evt.target.id, campusSource));
       var img = document.createElement("img");
       img.style.width = "220px"
       img.src = "image/campus/" + evt.target.id + ".jpg";
-      console.log("image/campus/" + evt.target.id + ".jpg")
       var src = document.getElementById("panoDiv");
       src.innerHTML = "";
       src.appendChild(img);
@@ -1038,10 +1076,10 @@ document.querySelectorAll('.layerToggler').forEach(el => {
 
 
 
-var openPanoFunctionLayer = (PointAttribKey, PointAttribValue, pointSourceLayer) => {
-  overlay.setPosition(getCoordinates(PointAttribKey, PointAttribValue, pointSourceLayer));
-  panoFunction(PointAttribValue);
-}
+// var openPanoFunctionLayer = (PointAttribKey, PointAttribValue, pointSourceLayer) => {
+//   overlay.setPosition(getCoordinates(PointAttribKey, PointAttribValue, pointSourceLayer));
+//   panoFunction(PointAttribValue);
+// }
 
 document.getElementById('adminA').onclick = () => {
   var coord = getCoordinates("Build_Name", 'Administrative Building', BuildSource);
@@ -1144,6 +1182,38 @@ homeBtn.onclick = () => {
   OL3dDisable_ViewAnimation();
 
 }
+// function mainContentDisplay(event, contentName) {
+// 	var i, x, tablinks;
+// 	x = document.getElementsByClassName("main-content-display");
+// 	for (i = 0; i < x.length; i++) {
+// 		x[i].style.display = "none";
+// 	};
+// 	document.getElementById(contentName).style.display = "block";
+// }
+
+document.querySelectorAll('.tab-selector').forEach(el => {
+  el.addEventListener('click', evt => {
+    var i, x;
+    x = document.getElementsByClassName("main-content-display");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    };
+    document.getElementById(evt.target.id.slice(0, evt.target.id.length - 1)).style.display = "block";
+    if (evt.target.id == "panoramic-sectionB") {
+      document.getElementById('panoDiv').innerHTML = "";
+      document.getElementById('BuildingTable').innerHTML = "";
+      panoFunction("KU gate", "panoramic-section")
+    }
+  })
+})
+// document.getElementById("panoramic-button").onclick = () => {
+//   console.log("running")
+//   document.getElementById("map").style.display = "block";
+//   document.getElementById("panoramic-section").style.display = "block";
+//   document.getElementById("panoramic-section").innerHTML = "Function Calling";
+//   // 
+// }
+
 const toggleModal = () => {
   document.querySelector('.modal')
     .classList.toggle('modal--hidden');
@@ -1171,3 +1241,4 @@ document.querySelector('.modal_close-bar span')
 document.querySelector('#show-modal')
     .addEventListener('click',toggleModal);
   */
+

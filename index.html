@@ -54,12 +54,23 @@
 	<div class="d-flex" id="wrapper">
 
 		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper" style="display: grid;grid-template-rows: 10% 80% 10%;">
+		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading">Layer Control</div>
-			<div class="list-group list-group-flush" style="overflow: auto;">
+			<div>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active tab-selector" href="#" id="mapB"> Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link tab-selector" href="#" id="panoramic-sectionB">Panoramic</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="list-group list-group-flush" style="overflow: auto;width:100%;">
 				<div id="accordion">
 					<div class="card">
-						<div class="card-header" id="headingOne">
+						<div class="card-header" id="headingOne" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input " type="checkbox" value="" id="adminCheckbox"
 									style="margin-top:10px"> -->
@@ -82,27 +93,20 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingTwo">
+						<div class="card-header" id="headingTwo" style="padding-left: 2rem;">
+							<input class="form-check-input" type="checkbox" value="" id="panoCheckbox"
+								style="margin-top:10px">
 							<h5 class="mb-0">
-								<input class="form-check-input" type="checkbox" value="" id="panoCheckbox"
-									style="margin-top:10px">
+
 								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
 									aria-expanded="false" aria-controls="collapseTwo">
 									Panorama Image
 								</button>
 							</h5>
 						</div>
-						<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-							data-parent="#accordion">
-							<div class="card-body">
-								<p id="ku_gate" class="border">KU Gate</p>
-
-
-							</div>
-						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingThree">
+						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<input class="form-check-input" type="checkbox" value="" id="campusCheckbox"
 									style="margin-top:10px">
@@ -124,7 +128,7 @@
 
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingThree">
+						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<input class="form-check-input" type="checkbox" value="" id="parking"
 									style="margin-top:10px">
@@ -145,13 +149,13 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour">
+						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<input class="form-check-input" type="checkbox" value="" id="sports"
 									style="margin-top:10px">
 								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix"
 									aria-expanded="false" aria-controls="collapseSix">
-									Sports and Recreational
+									Sports & Recreational
 								</button>
 							</h5>
 						</div>
@@ -168,7 +172,7 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour">
+						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
@@ -186,7 +190,7 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour">
+						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
@@ -203,7 +207,7 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour">
+						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
@@ -224,7 +228,7 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour">
+						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
 								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen"
@@ -262,13 +266,13 @@
 					</div> -->
 
 					<div class="card">
-						<div class="card-header" id="headingThree">
+						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
 							<h5 class="mb-0">
 								<input class="form-check-input" type="checkbox" value="" id="wifiCheckbox"
 									style="margin-top:10px">
 								<button class="btn btn-link collapsed" data-toggle="collapse"
 									data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-									Wifi (Wireless Hotspot)
+									Wireless Hotspot
 								</button>
 							</h5>
 						</div>
@@ -284,7 +288,7 @@
 			</div>
 			<div id="RouteBtnSec" style="display: none;">
 				<button type="button" class="btn btn-secondary" id="RouteBtnCore"
-					style="margin-top: 10px;width:90%;background-color: gray;color:white;font-weight: bold;">View
+					style="margin-top: 10px;width:90%;background-color:#042BFF ;color:white;font-weight: bold;">View
 					Route</button>
 			</div>
 
@@ -325,7 +329,7 @@
 			</nav>
 
 			<div class="container-fluid">
-				<div id="map" style="height:90vh;width:100vw;position:relative;">
+				<div id="map" style="height:90vh;width:100vw;position:relative;" class="main-content-display">
 
 					<button class="btn btn-primary" id="menu-toggle"
 						style="margin-top:0px;position: absolute;z-index: 9;background-color: dimgray;">☰</button>
@@ -334,6 +338,10 @@
 						style="margin-top:3rem;position: absolute;z-index: 9;background-color: dimgray;">
 
 					<div class="MouseCord"></div>
+
+				</div>
+				<div id="panoramic-section" class="main-content-display panoramic-view-section"
+					style="display:none;height:90vh;width:78vw;">
 
 				</div>
 			</div>
@@ -384,10 +392,13 @@
 	<div id="popup" class="ol-popup">
 		<a href="#" id="popup-closer" class="ol-popup-closer"></a>
 		<div id="popup-content" style="overflow: auto;">
-			<div id="panoDiv"></div>
+			<div id="panoDiv" class="panoramic-view-section"></div>
 			<table id="BuildingTable" class="table">
 
 			</table>
+			<div id="InfoDiv">
+
+			</div>
 		</div>
 	</div>
 	<div class="modal ">
@@ -416,7 +427,20 @@
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
+
+
+
+		// function mainContentDisplay(event, contentName) {
+		// 	var i, x, tablinks;
+		// 	x = document.getElementsByClassName("main-content-display");
+		// 	for (i = 0; i < x.length; i++) {
+		// 		x[i].style.display = "none";
+		// 	};
+		// 	document.getElementById(contentName).style.display = "block";
+		// }
+
 	</script>
+
 	<script type="text/javascript" src="js/SearchJS.js"></script>
 	<script src="js/Select.js"></script>
 	<script src="./index.js"></script>

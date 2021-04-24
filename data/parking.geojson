@@ -3,8 +3,8 @@
 "name": "Parking",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Id": 0,"name_id":"official_parking", "name": "Private Vehicle Parking" }, "geometry": { "type": "Point", "coordinates": [ 85.537976971251425, 27.620497063235167 ] } },
-{ "type": "Feature", "properties": { "Id": 0,"name_id":"bus_parking", "name": "KU Official's Parking" }, "geometry": { "type": "Point", "coordinates": [ 85.538680908670557, 27.618467377824896 ] } },
-{ "type": "Feature", "properties": { "Id": 0,"name_id":"private_vehicle_parking", "name": "Bus Park" }, "geometry": { "type": "Point", "coordinates": [ 85.537309589329965, 27.617756776125965 ] } }
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"private_vehicle_parking", "name": "Private Vehicle Parking" }, "geometry": { "type": "Point", "coordinates": [ 85.537976971251425, 27.620497063235167 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"official_parking", "name": "KU Official's Parking" }, "geometry": { "type": "Point", "coordinates": [ 85.538680908670557, 27.618467377824896 ] } },
+{ "type": "Feature", "properties": { "Id": 0,"name_id":"bus_parking", "name": "Bus Park" }, "geometry": { "type": "Point", "coordinates": [ 85.537309589329965, 27.617756776125965 ] } }
 ]
 }

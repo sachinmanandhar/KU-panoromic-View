@@ -89,6 +89,7 @@ const panoDivChangeStyle2 = () => {
 // const panoImage = document.querySelector('#popup-content');
 
 const panoFunction = (imagePan, divElement) => {
+  document.getElementById('InfoDiv').innerHTML = ""
   var panoContainer = document.getElementById(divElement);
   content.style.overflow = "hidden";
   panoContainer.innerHTML = "";
@@ -820,14 +821,91 @@ routeSubmitBtn.onclick = () => {
   topFunction();
 
 };
+function readTextFile(file, callback) {
+  var rawFile = new XMLHttpRequest();
+  rawFile.overrideMimeType("application/json");
+  rawFile.open("GET", file, true);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+      callback(rawFile.responseText);
+    }
+  }
+  rawFile.send(null);
+}
+var OfficeInfoTable = (office) => {
+  var FinalData = null;
+  // document.getElementById('InfoDiv').innerHTML = "";
+  readTextFile("data/DepartmentContacts.json", (text) => {
+    var data = JSON.parse(text);
+    // console.log(data)
+    console.log(office)
+    var dat = data.find(element => element.Office = office);
+    for (var i = 0; i < data.length; i++) {
+      // console.log(data[i].Office)
+      if (data[i].Office == office) {
+        FinalData = data[i]
+      }
+    }
 
+    console.log(FinalData || "No Data");
+
+    var DepartmentInfo = document.createElement('table')
+    DepartmentInfo.classList.add("table");
+    var Drow0 = DepartmentInfo.insertRow(0);
+    var Drow1 = DepartmentInfo.insertRow(1);
+    var Drow2 = DepartmentInfo.insertRow(2);
+    var Drow3 = DepartmentInfo.insertRow(3);
+
+    Drow0.insertCell(0).innerHTML = Object.keys(FinalData)[0];
+    Drow0.insertCell(1).innerHTML = FinalData.Office;
+
+    Drow1.insertCell(0).innerHTML = Object.keys(FinalData)[1];
+    Drow1.insertCell(1).innerHTML = FinalData.Person_Incharge;
+
+    Drow2.insertCell(0).innerHTML = Object.keys(FinalData)[2];
+    Drow2.insertCell(1).innerHTML = FinalData.Email;
+
+    Drow3.insertCell(0).innerHTML = Object.keys(FinalData)[3];
+    Drow3.insertCell(1).innerHTML = FinalData.Phone_Number;
+
+    document.getElementById('InfoDiv').appendChild(DepartmentInfo);
+
+  });
+
+
+}
+const officeClickInfo = (office) => {
+  document.getElementById('BuildingTable').style.display = "none";
+  var BackBtn = document.createElement("BUTTON");
+
+  var backImage = document.createElement("img");
+  backImage.style.width = "20px"
+  backImage.src = "image/left-arrow.png";
+
+  // var BtnText = document.createTextNode("Back");
+  BackBtn.appendChild(backImage);
+
+  OfficeInfoTable(office)
+
+  document.getElementById('InfoDiv').appendChild(BackBtn);
+  BackBtn.style.position = "absolute"
+  BackBtn.style.bottom = "5px";
+  BackBtn.style.left = "5px";
+
+  BackBtn.addEventListener("click", () => {
+    panoContainer.innerHTML = "";
+    document.getElementById('InfoDiv').innerHTML = "";
+    document.getElementById('BuildingTable').style.display = "block";
+  });
+
+}
 const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => {
   panoContainer.innerHTML = ""
+  document.getElementById('InfoDiv').innerHTML = ""
   panoDivChangeStyle2();
   content.style.overflow = "auto";
   Btable.style.display = "block";
   Btable.innerHTML = "";
-  document.getElementById('InfoDiv').innerHTML = ""
   var row0 = Btable.insertRow(0);
   var row1 = Btable.insertRow(1);
   var row2 = Btable.insertRow(2);
@@ -857,50 +935,45 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
   // });
 
   cell02.innerHTML = Building;
-  cell02.onmouseover = () => {
-    cell02.style.textDecoration = "underline";
-  }
-  cell02.onmouseout = () => {
-    cell02.style.textDecoration = "none";
-  }
-  cell02.addEventListener("click", () => {
-    document.getElementById('BuildingTable').style.display = "none";
-    var BackBtn = document.createElement("BUTTON");
 
-    var backImage = document.createElement("img");
-    backImage.style.width = "20px"
-    backImage.src = "image/left-arrow.png";
-
-    // var BtnText = document.createTextNode("Back");
-    BackBtn.appendChild(backImage);
-    document.getElementById('InfoDiv').innerHTML = "this is " + Building;
-
-    document.getElementById('InfoDiv').appendChild(BackBtn);
-    BackBtn.style.position = "absolute"
-    BackBtn.style.bottom = "5px";
-    BackBtn.style.left = "5px";
-
-    BackBtn.addEventListener("click", () => {
-      panoContainer.innerHTML = "";
-      document.getElementById('InfoDiv').removeChild(BackBtn);
-      document.getElementById('BuildingTable').style.display = "block";
-    });
-
-  });
 
   cell11.innerHTML = "Office 1";
   cell12.innerHTML = Office1
 
+  cell12.onmouseover = () => {
+    cell12.style.textDecoration = "underline";
+  }
+  cell12.onmouseout = () => {
+    cell12.style.textDecoration = "none";
+  }
+
+  cell12.addEventListener("click", () => {
+    officeClickInfo(Office1)
+
+  });
+
 
   cell21.innerHTML = "Office 2";
   cell22.innerHTML = Office2;
+  cell22.addEventListener("click", () => {
+    officeClickInfo(Office2)
+
+  });
 
   cell31.innerHTML = "Office 3";
   cell32.innerHTML = Office3;
+  cell32.addEventListener("click", () => {
+    officeClickInfo(Office3)
+
+  });
 
 
   cell41.innerHTML = "Office 4";
   cell42.innerHTML = Office4;
+  cell42.addEventListener("click", () => {
+    officeClickInfo(Office4)
+
+  });
 }
 
 
@@ -1038,29 +1111,34 @@ document.getElementById('sports').onclick = () => {
 //     // LayerOnOff(evt.target.id, parking);
 //   })
 // });
-
+var dispImage = (imageName, source) => {
+  document.getElementById('InfoDiv').innerHTML = ""
+  document.getElementById('panoDiv').innerHTML = "";
+  document.getElementById('BuildingTable').innerHTML = "";
+  overlay.setPosition(getCoordinates('name_id', imageName, source));
+  var img = document.createElement("img");
+  img.style.width = "220px"
+  img.src = "image/campus/" + imageName + ".jpg";
+  console.log(img.src)
+  var src = document.getElementById("panoDiv");
+  src.innerHTML = "";
+  src.appendChild(img);
+}
 document.querySelectorAll('.layerToggler').forEach(el => {
   el.addEventListener('click', evt => {
     var StrLength = evt.target.id.length;
-    console.log();
     if (evt.target.id.slice(StrLength - 6, StrLength) == "sports") {
-
+      document.getElementById('InfoDiv').innerHTML = ""
+      document.getElementById('panoDiv').innerHTML = "";
+      document.getElementById('BuildingTable').innerHTML = "";
       overlay.setPosition(getCoordinates('name_id', evt.target.id, sports_source));
     }
     else if (evt.target.id.slice(StrLength - 7, StrLength) == "parking") {
-
-      overlay.setPosition(getCoordinates('name_id', evt.target.id, parkingSource));
+      dispImage(evt.target.id, parkingSource)
+      // overlay.setPosition(getCoordinates('name_id', evt.target.id, parkingSource));
     }
     else if (evt.target.id.slice(StrLength - 6, StrLength) == "campus") {
-      document.getElementById('panoDiv').innerHTML = "";
-      document.getElementById('BuildingTable').innerHTML = "";
-      overlay.setPosition(getCoordinates('name_id', evt.target.id, campusSource));
-      var img = document.createElement("img");
-      img.style.width = "220px"
-      img.src = "image/campus/" + evt.target.id + ".jpg";
-      var src = document.getElementById("panoDiv");
-      src.innerHTML = "";
-      src.appendChild(img);
+      dispImage(evt.target.id, campusSource)
 
     }
 
@@ -1135,6 +1213,7 @@ var getAttribBuildNew = (val) => {
 document.querySelectorAll('.BuildingLayer').forEach(el => {
   el.addEventListener('click', evt => {
     var coord = getCoordinates("name_id", evt.target.id, BuildSource);
+    document.getElementById('InfoDiv').innerHTML = ""
     overlay.setPosition(coord[0][0]);
     var officeInfo = getAttribBuildNew(evt.target.id);
     tableFunction(Btable, officeInfo.name, officeInfo.first, officeInfo.second, officeInfo.third, officeInfo.fourth);

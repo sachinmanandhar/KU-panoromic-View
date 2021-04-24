@@ -1,0 +1,98 @@
+[
+    {
+        "Office": "Office of the Dean School of Engineering",
+        "Person_Incharge": "Professor Dr Manish Pokhrel",
+        "Email": "dean_engg@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Office of the Dean School of Science",
+        "Person_Incharge": "Professor Dr Kanhaiya Jha",
+        "Email": "sos_dean@ku.edu.np",
+        "Phone_Number": "977-11-415200"
+    },
+    {
+        "Office": "Office of Vice Chancellor",
+        "Person_Incharge": "Prof Dr Bhola Thapa",
+        "Email": "vc@ku.edu.np",
+        "Phone_Number": "977-11-415001"
+    },
+    {
+        "Office": "Office of Registrar",
+        "Person_Incharge": "Prof dr Subodh Sharma",
+        "Email": "registrar@ku.edu.np",
+        "Phone_Number": ""
+    },
+    {
+        "Office": "Department of Chemical Science and Engineering",
+        "Person_Incharge": "Rajendra Joshi",
+        "Email": "chem_hod@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Department of Civil Engineering",
+        "Person_Incharge": "Prachand Pradhan",
+        "Email": "email@gmail.com",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Head of the Department Computer Science and Enginnering",
+        "Person_Incharge": "Bal Krishna Bal",
+        "Email": "cse@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Office of Head of the Department Electrical Engineering",
+        "Person_Incharge": "",
+        "Email": "elec_hod@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Office of Head of the Department of Geomatics Enginnering",
+        "Person_Incharge": "Subash Ghimire",
+        "Email": "dcge@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Office of Head of the Department Mechanical Enginering,",
+        "Person_Incharge": "Danial Tuladhar",
+        "Email": "mech@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Head of the Department Department of Biotechnology Biotechnology",
+        "Person_Incharge": "",
+        "Email": "biot_hod@ku.edu.np",
+        "Phone_Number": "977-11-415200"
+    },
+    {
+        "Office": "Head of the Department Environment Science and Engineering",
+        "Person_Incharge": "",
+        "Email": "ese_hod@ku.edu.np",
+        "Phone_Number": "977-11-415200"
+    },
+    {
+        "Office": "Head of the Department Pharmacy",
+        "Person_Incharge": "",
+        "Email": "pharmacy@ku.edu.np",
+        "Phone_Number": "977-11-415200"
+    },
+    {
+        "Office": "Head of Department Natural Sciences",
+        "Person_Incharge": "",
+        "Email": "info@ku.edu.np",
+        "Phone_Number": "977-11-415200"
+    },
+    {
+        "Office": "Office of the Controller of Examinations",
+        "Person_Incharge": "Prof. Dr. Panna Thapa",
+        "Email": "controllerofexaminations@ku.edu.np",
+        "Phone_Number": "977-11-415100"
+    },
+    {
+        "Office": "Account and Finance",
+        "Person_Incharge": "Chandeshwor Shrestha",
+        "Email": "finance@ku.edu.np",
+        "Phone_Number": "977-11-415005"
+    }
+]

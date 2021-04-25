@@ -1,7 +1,7 @@
 import 'ol/ol.css';
 import { Map, View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
-// import OSM from 'ol/source/OSM';
+import OSM from 'ol/source/OSM';
 // import { fromLonLat } from 'ol/proj';
 import { ScaleLine, defaults as defaultControls } from 'ol/control';
 import MousePosition from 'ol/control/MousePosition';
@@ -653,17 +653,24 @@ var wmsLayer = new TileLayer({
 //   }),
 //   zIndex: -2,
 // })
+
+// var BaseMap = new TileLayer({
+//   source: new XYZ({
+//     attributions:
+//       'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' +
+//       'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
+//     url:
+//       'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+//       'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+//   }),
+//   zIndex: -2,
+// })
+
 var BaseMap = new TileLayer({
-  source: new XYZ({
-    attributions:
-      'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' +
-      'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
-    url:
-      'https://server.arcgisonline.com/ArcGIS/rest/services/' +
-      'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-  }),
+  source: new OSM(),
   zIndex: -2,
 })
+
 var map = new Map({
   controls: defaultControls().extend([
     new ScaleLine({
@@ -856,6 +863,8 @@ var OfficeInfoTable = (office) => {
     var Drow2 = DepartmentInfo.insertRow(2);
     var Drow3 = DepartmentInfo.insertRow(3);
 
+    var Drow4 = DepartmentInfo.insertRow(4);
+
     Drow0.insertCell(0).innerHTML = Object.keys(FinalData)[0];
     Drow0.insertCell(1).innerHTML = FinalData.Office;
 
@@ -867,6 +876,9 @@ var OfficeInfoTable = (office) => {
 
     Drow3.insertCell(0).innerHTML = Object.keys(FinalData)[3];
     Drow3.insertCell(1).innerHTML = FinalData.Phone_Number;
+
+    Drow4.insertCell(0).innerHTML = Object.keys(FinalData)[4];
+    Drow4.insertCell(1).innerHTML = FinalData.Floor;
 
     document.getElementById('InfoDiv').appendChild(DepartmentInfo);
 
@@ -955,6 +967,14 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
   cell21.innerHTML = "Office 2";
   cell22.innerHTML = Office2;
+
+  cell22.onmouseover = () => {
+    cell22.style.textDecoration = "underline";
+  }
+  cell22.onmouseout = () => {
+    cell22.style.textDecoration = "none";
+  }
+
   cell22.addEventListener("click", () => {
     officeClickInfo(Office2)
 
@@ -962,6 +982,14 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
   cell31.innerHTML = "Office 3";
   cell32.innerHTML = Office3;
+
+  cell32.onmouseover = () => {
+    cell32.style.textDecoration = "underline";
+  }
+  cell32.onmouseout = () => {
+    cell32.style.textDecoration = "none";
+  }
+
   cell32.addEventListener("click", () => {
     officeClickInfo(Office3)
 
@@ -970,6 +998,14 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
   cell41.innerHTML = "Office 4";
   cell42.innerHTML = Office4;
+
+  cell42.onmouseover = () => {
+    cell42.style.textDecoration = "underline";
+  }
+  cell42.onmouseout = () => {
+    cell42.style.textDecoration = "none";
+  }
+
   cell42.addEventListener("click", () => {
     officeClickInfo(Office4)
 
@@ -1117,7 +1153,8 @@ var dispImage = (imageName, source) => {
   document.getElementById('BuildingTable').innerHTML = "";
   overlay.setPosition(getCoordinates('name_id', imageName, source));
   var img = document.createElement("img");
-  img.style.width = "220px"
+  img.style.width = "248px";
+  img.style.marginTop = "13px";
   img.src = "image/campus/" + imageName + ".jpg";
   console.log(img.src)
   var src = document.getElementById("panoDiv");
@@ -1180,6 +1217,14 @@ document.getElementById('adminC').onclick = () => {
   var officeInfo = getAttribBuild('Block 9');
   tableFunction(Btable, officeInfo.name, officeInfo.first, officeInfo.second, officeInfo.third, officeInfo.fourth)
 }
+
+document.getElementById('adminD').onclick = () => {
+  var coord = getCoordinates("Build_Name", 'Block 6', BuildSource);
+  overlay.setPosition(coord[0][0]);
+  var officeInfo = getAttribBuild('Block 6');
+  tableFunction(Btable, officeInfo.name, officeInfo.first, officeInfo.second, officeInfo.third, officeInfo.fourth)
+}
+
 document.getElementById('canteen').onclick = () => {
   var coord = getCoordinates("Build_Name", 'CV Raman Auditorium', BuildSource);
   overlay.setPosition(coord[0][0]);

@@ -633,7 +633,7 @@ var RasterImg = new ImageLayer({
 */
 var wmsSource = new TileWMS({
   url: 'http://localhost:8080/geoserver/wms',
-  params: { 'LAYERS': 'KU:geotiff_coverage', 'TILED': true },
+  params: { 'LAYERS': '	ku_panorama:geotiff_coverage', 'TILED': true },
   serverType: 'geoserver',
 });
 

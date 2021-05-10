@@ -26,7 +26,7 @@ import { Icon } from 'ol/style';
 import { LineString, Point } from 'ol/geom';
 import { Feature } from 'ol';
 // import { selectFeatureControl } from 'ol/control';
-import OLCesium from 'olcs/OLCesium.js';
+// import OLCesium from 'olcs/OLCesium.js';
 
 // import { easeIn, easeOut } from 'ol/easing';
 
@@ -1358,9 +1358,9 @@ map.on('pointermove', function (evt) {
   map.getTargetElement().style.cursor = hit ? 'pointer' : '';
 });
 
-const ol3d = new OLCesium({ map: map }); // map is the ol.Map instance
+// const ol3d = new OLCesium({ map: map }); // map is the ol.Map instance
 
-ol3d.setEnabled(true);
+// ol3d.setEnabled(true);
 
 var KU = [85.53803, 27.61946]
 
@@ -1369,7 +1369,7 @@ function onClick(id, callback) {
 }
 
 var OL3dDisable_ViewAnimation = () => {
-  ol3d.setEnabled(false);
+  // ol3d.setEnabled(false);
   view.animate({
     center: KU,
     duration: 2000,

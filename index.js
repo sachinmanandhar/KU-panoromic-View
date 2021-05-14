@@ -26,7 +26,7 @@ import { Icon } from 'ol/style';
 import { LineString, Point } from 'ol/geom';
 import { Feature } from 'ol';
 // import { selectFeatureControl } from 'ol/control';
-import OLCesium from 'olcs/OLCesium.js';
+// import OLCesium from 'olcs/OLCesium.js';
 
 // import { easeIn, easeOut } from 'ol/easing';
 
@@ -912,104 +912,181 @@ const officeClickInfo = (office) => {
 
 }
 const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => {
+  var ArgumentsLength = 1;
+  const Arguments = [Building, Office1, Office2, Office3, Office4]
+
+  // for (var i = 1; i < arguments.length; i++) {
+  //   console.log(arguments[i])
+
+  // }
+
+
+  if (Office1 != " ") { ArgumentsLength += 1; }
+  if (Office2 != " ") { ArgumentsLength += 1; }
+  if (Office3 != " ") { ArgumentsLength += 1; }
+  if (Office4 != " ") { ArgumentsLength += 1; }
+
+
+
+
+
+
   panoContainer.innerHTML = ""
   document.getElementById('InfoDiv').innerHTML = ""
   panoDivChangeStyle2();
   content.style.overflow = "auto";
   Btable.style.display = "block";
   Btable.innerHTML = "";
-  var row0 = Btable.insertRow(0);
-  var row1 = Btable.insertRow(1);
-  var row2 = Btable.insertRow(2);
-  var row3 = Btable.insertRow(3);
-  var row4 = Btable.insertRow(4);
 
-  var cell01 = row0.insertCell(0);
-  var cell02 = row0.insertCell(1);
+  // var rowF = Btable.insertRow(0);
+  // rowF.insertCell(0).innerHTML = "Building Name";
+  // rowF.insertCell(1).innerHTML = Building;
 
-  var cell11 = row1.insertCell(0);
-  var cell12 = row1.insertCell(1);
+  for (var row = 0; row < ArgumentsLength; row++) {
 
-  var cell21 = row2.insertCell(0);
-  var cell22 = row2.insertCell(1);
+    var Row = Btable.insertRow(row);
+    if (row == 0) { Row.insertCell(0).innerHTML = "Building"; }
+    else {
+      Row.insertCell(0).innerHTML = "Office" + " " + (row + 1).toString();
+    };
+    const cellVal = Row.insertCell(1);
+    cellVal.innerHTML = Arguments[row];
 
-  var cell31 = row3.insertCell(0);
-  var cell32 = row3.insertCell(1);
+    if (row !== 0) {
+      cellVal.onmouseover = () => {
+        cellVal.style.textDecoration = "underline";
+      }
+      cellVal.onmouseout = () => {
+        cellVal.style.textDecoration = "none";
+      }
+    }
+    // cellVal.addEventListener("click", () => {
+    //   console.log(row)
+    //   console.log(Arguments[row]);
+    //   // officeClickInfo(Arguments[row])
 
-  var cell41 = row4.insertCell(0);
-  var cell42 = row4.insertCell(1);
+    // });
+  }
+  Btable.rows[1].cells[1].addEventListener("click", () => {
+
+    officeClickInfo(Arguments[1])
+
+  });
+
+  Btable.rows[2].cells[1].addEventListener("click", () => {
+
+    officeClickInfo(Arguments[2])
+
+  });
+
+  Btable.rows[3].cells[1].addEventListener("click", () => {
+
+    officeClickInfo(Arguments[3])
+
+  });
+
+  Btable.rows[4].cells[1].addEventListener("click", () => {
+
+    officeClickInfo(Arguments[4])
+
+  });
 
 
-  cell01.innerHTML = "Building Name";
 
-  // cell01.addEventListener("click", () => {
-  //   panoContainer.innerHTML = "";
+
+
+  // var row0 = Btable.insertRow(0);
+  // var row1 = Btable.insertRow(1);
+  // var row2 = Btable.insertRow(2);
+  // var row3 = Btable.insertRow(3);
+  // var row4 = Btable.insertRow(4);
+
+  // var cell01 = row0.insertCell(0);
+  // var cell02 = row0.insertCell(1);
+
+  // var cell11 = row1.insertCell(0);
+  // var cell12 = row1.insertCell(1);
+
+  // var cell21 = row2.insertCell(0);
+  // var cell22 = row2.insertCell(1);
+
+  // var cell31 = row3.insertCell(0);
+  // var cell32 = row3.insertCell(1);
+
+  // var cell41 = row4.insertCell(0);
+  // var cell42 = row4.insertCell(1);
+
+
+  // cell01.innerHTML = "Building Name";
+
+  // // cell01.addEventListener("click", () => {
+  // //   panoContainer.innerHTML = "";
+  // // });
+
+  // cell02.innerHTML = Building;
+
+
+  // cell11.innerHTML = "Office 1";
+  // cell12.innerHTML = Office1
+
+  // cell12.onmouseover = () => {
+  //   cell12.style.textDecoration = "underline";
+  // }
+  // cell12.onmouseout = () => {
+  //   cell12.style.textDecoration = "none";
+  // }
+
+  // cell12.addEventListener("click", () => {
+  //   officeClickInfo(Office1)
+
   // });
 
-  cell02.innerHTML = Building;
+
+  // cell21.innerHTML = "Office 2";
+  // cell22.innerHTML = Office2;
+
+  // cell22.onmouseover = () => {
+  //   cell22.style.textDecoration = "underline";
+  // }
+  // cell22.onmouseout = () => {
+  //   cell22.style.textDecoration = "none";
+  // }
+
+  // cell22.addEventListener("click", () => {
+  //   officeClickInfo(Office2)
+
+  // });
+
+  // cell31.innerHTML = "Office 3";
+  // cell32.innerHTML = Office3;
+
+  // cell32.onmouseover = () => {
+  //   cell32.style.textDecoration = "underline";
+  // }
+  // cell32.onmouseout = () => {
+  //   cell32.style.textDecoration = "none";
+  // }
+
+  // cell32.addEventListener("click", () => {
+  //   officeClickInfo(Office3)
+
+  // });
 
 
-  cell11.innerHTML = "Office 1";
-  cell12.innerHTML = Office1
+  // cell41.innerHTML = "Office 4";
+  // cell42.innerHTML = Office4;
 
-  cell12.onmouseover = () => {
-    cell12.style.textDecoration = "underline";
-  }
-  cell12.onmouseout = () => {
-    cell12.style.textDecoration = "none";
-  }
+  // cell42.onmouseover = () => {
+  //   cell42.style.textDecoration = "underline";
+  // }
+  // cell42.onmouseout = () => {
+  //   cell42.style.textDecoration = "none";
+  // }
 
-  cell12.addEventListener("click", () => {
-    officeClickInfo(Office1)
+  // cell42.addEventListener("click", () => {
+  //   officeClickInfo(Office4)
 
-  });
-
-
-  cell21.innerHTML = "Office 2";
-  cell22.innerHTML = Office2;
-
-  cell22.onmouseover = () => {
-    cell22.style.textDecoration = "underline";
-  }
-  cell22.onmouseout = () => {
-    cell22.style.textDecoration = "none";
-  }
-
-  cell22.addEventListener("click", () => {
-    officeClickInfo(Office2)
-
-  });
-
-  cell31.innerHTML = "Office 3";
-  cell32.innerHTML = Office3;
-
-  cell32.onmouseover = () => {
-    cell32.style.textDecoration = "underline";
-  }
-  cell32.onmouseout = () => {
-    cell32.style.textDecoration = "none";
-  }
-
-  cell32.addEventListener("click", () => {
-    officeClickInfo(Office3)
-
-  });
-
-
-  cell41.innerHTML = "Office 4";
-  cell42.innerHTML = Office4;
-
-  cell42.onmouseover = () => {
-    cell42.style.textDecoration = "underline";
-  }
-  cell42.onmouseout = () => {
-    cell42.style.textDecoration = "none";
-  }
-
-  cell42.addEventListener("click", () => {
-    officeClickInfo(Office4)
-
-  });
+  // });
 }
 
 
@@ -1074,7 +1151,7 @@ map.on('click', evt => {
       overlay.setPosition(coord[0][0]);
 
 
-      tableFunction(Btable, select.get('Build_Name') || "Select Building to get Office Info ", select.get('Office1') || " ", select.get('Office2') || " ", select.get('Office3') || " ", select.get('Office4') || " ");
+      tableFunction(Btable, select.get('Build_Name'), select.get('Office1') || " ", select.get('Office2') || " ", select.get('Office3') || " ", select.get('Office4') || " ");
       document.getElementById("RouteBtnSec").style.display = "inline";
     }
     else {
@@ -1281,9 +1358,9 @@ map.on('pointermove', function (evt) {
   map.getTargetElement().style.cursor = hit ? 'pointer' : '';
 });
 
-const ol3d = new OLCesium({ map: map }); // map is the ol.Map instance
+// const ol3d = new OLCesium({ map: map }); // map is the ol.Map instance
 
-ol3d.setEnabled(true);
+// ol3d.setEnabled(true);
 
 var KU = [85.53803, 27.61946]
 
@@ -1292,7 +1369,7 @@ function onClick(id, callback) {
 }
 
 var OL3dDisable_ViewAnimation = () => {
-  ol3d.setEnabled(false);
+  // ol3d.setEnabled(false);
   view.animate({
     center: KU,
     duration: 2000,

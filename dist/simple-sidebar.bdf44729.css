@@ -6,16 +6,21 @@
 
  #wrapper {
   overflow-x: hidden;
-  width:100vw
+  width:100vw;
+  height: 89.6vh;
 }
 .nav-tabs{
-display: flex;justify-content:space-between;margin-left:1rem;margin-right: 1rem;font-weight: bold;
+display: flex;
+justify-content:space-between;
+margin-left:1rem;
+margin-right: 1rem;
+margin-top: 35px;
+font-weight: bold;
 }
 #sidebar-wrapper {
 display: grid;grid-template-rows: 80px 40px 1fr 60px;
 min-width:289px;
-min-height: 100vh;
-height: 100vh;
+height: 88.4vh;
 width:25%;
 overflow-x: auto;
 margin-left: -15rem;
@@ -26,10 +31,12 @@ transition: margin .25s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
-padding: 0.875rem 1.25rem;
+/* padding: 0.875rem 1.25rem; */
 font-size: 1.2rem;
 }
-
+#sidebar-wrapper .sidebar-heading img{
+width:100%;
+}
 #sidebar-wrapper .list-group {
 width: 15rem;
 }

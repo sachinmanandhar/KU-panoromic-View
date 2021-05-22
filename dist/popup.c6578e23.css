@@ -2,18 +2,19 @@
     position: absolute;
     background-color: white;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 15px;
+    padding: 25px 5px 10px 5px;
     border-radius: 10px;
     border: 1px solid #cccccc;
     bottom: 12px;
     /* left: -50px; */
-    min-width: 280px;
+    min-width: 200px;
 
 }
 
 #popup-content {
     height: 250px;
-    width: 250px;
+    width: 290px;
+    font-size:14px;
 
 }
 

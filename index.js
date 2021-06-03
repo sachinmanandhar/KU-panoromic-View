@@ -37,6 +37,7 @@ import * as easing from 'ol/easing';
 // import Static from 'ol/source/ImageStatic';
 import * as stringSimilarity from 'string-similarity';
 import Overlay from 'ol/Overlay';
+import BaseLayer from 'ol/layer/Base';
 
 // document.querySelector('.ol-zoom').style.top = "6rem";
 
@@ -290,6 +291,8 @@ const panoFunction = (imagePan, divElement) => {
   //Boys_Hostel_panorama.link(,panoPosition1,300,imageSrc);
 
   Block_9_panorama.link(inge_panorama, new Vector3(1000, -200, 1000), 100, imageSrc);
+  // Block_9_panorama.link(pelton_turbine_panorama, new Vector3(10, -300, 100), 100, imageSrc);
+
   inge_panorama.link(ttl_panorama, new Vector3(1000, -200, -100), 100, imageSrc);
   ttl_panorama.link(khetan_panorama, new Vector3(1000, 700, -1500), 300, imageSrc);
   khetan_panorama.link(bt_panorama, new Vector3(1000, -200, -100), 100, imageSrc);
@@ -1380,6 +1383,7 @@ var OL3dDisable_ViewAnimation = () => {
 }
 var homeBtn = document.getElementById('homeIcon')
 homeBtn.onclick = () => {
+
   OL3dDisable_ViewAnimation();
 
 }
@@ -1426,8 +1430,10 @@ document.querySelector('#show-modal')
 document.querySelector('#more')
   .addEventListener('submit', (event) => {
     event.preventDefault();
+    setTimeout(function () { map.removeLayer(BaseMap) }, 4000);
     OL3dDisable_ViewAnimation();
     toggleModal();
+    setTimeout(function () { document.getElementById('map').style.backgroundColor = 'black' }, 5000);
 
 
   });

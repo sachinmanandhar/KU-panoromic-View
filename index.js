@@ -929,11 +929,6 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
   if (Office3 != " ") { ArgumentsLength += 1; }
   if (Office4 != " ") { ArgumentsLength += 1; }
 
-
-
-
-
-
   panoContainer.innerHTML = ""
   document.getElementById('InfoDiv').innerHTML = ""
   panoDivChangeStyle2();
@@ -970,30 +965,34 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
     // });
   }
-  Btable.rows[1].cells[1].addEventListener("click", () => {
+  if (Btable.rows[1]) {
+    Btable.rows[1].cells[1].addEventListener("click", () => {
 
-    officeClickInfo(Arguments[1])
+      officeClickInfo(Arguments[1])
 
-  });
+    });
+  }
+  if (Btable.rows[2]) {
+    Btable.rows[2].cells[1].addEventListener("click", () => {
 
-  Btable.rows[2].cells[1].addEventListener("click", () => {
+      officeClickInfo(Arguments[2])
 
-    officeClickInfo(Arguments[2])
+    });
+  }
+  if (Btable.rows[3]) {
+    Btable.rows[3].cells[1].addEventListener("click", () => {
 
-  });
+      officeClickInfo(Arguments[3])
 
-  Btable.rows[3].cells[1].addEventListener("click", () => {
+    });
+  }
+  if (Btable.rows[4]) {
+    Btable.rows[4].cells[1].addEventListener("click", () => {
 
-    officeClickInfo(Arguments[3])
+      officeClickInfo(Arguments[4])
 
-  });
-
-  Btable.rows[4].cells[1].addEventListener("click", () => {
-
-    officeClickInfo(Arguments[4])
-
-  });
-
+    });
+  }
 
 
 

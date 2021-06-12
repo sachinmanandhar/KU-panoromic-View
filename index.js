@@ -879,7 +879,6 @@ var OfficeInfoTable = (office) => {
   readTextFile("data/DepartmentContacts.json", (text) => {
     var data = JSON.parse(text);
     // console.log(data)
-    console.log(office)
     var dat = data.find(element => element.Office = office);
     for (var i = 0; i < data.length; i++) {
       // console.log(data[i].Office)
@@ -1003,6 +1002,7 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
     });
   }
+  Btable.rows[0].cells[0].style.width="25%";
   if (Btable.rows[2]) {
     Btable.rows[2].cells[1].addEventListener("click", () => {
 
@@ -1263,7 +1263,7 @@ var dispImage = (imageName, source) => {
   document.getElementById('BuildingTable').innerHTML = "";
   overlay.setPosition(getCoordinates('name_id', imageName, source));
   var img = document.createElement("img");
-  img.style.width = "248px";
+  img.style.width = "100%";
   img.style.marginTop = "13px";
   img.src = "image/campus/" + imageName + ".jpg";
   console.log(img.src)
@@ -1460,10 +1460,10 @@ document.querySelector('#show-modal')
 document.querySelector('#more')
   .addEventListener('submit', (event) => {
     event.preventDefault();
-    setTimeout(function () { map.removeLayer(BaseMap) }, 4000);
+    // setTimeout(function () { map.removeLayer(BaseMap) }, 4000);
     OL3dDisable_ViewAnimation();
     toggleModal();
-    setTimeout(function () { document.getElementById('map').style.backgroundColor = 'black' }, 5000);
+    // setTimeout(function () { document.getElementById('map').style.backgroundColor = 'black' }, 5000);
 
 
   });

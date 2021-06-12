@@ -273,9 +273,9 @@ const panoFunction = (imagePan, divElement) => {
 
   pelton_turbine_panorama.link(Block_10_panorama, new Vector3(3000, 0, -2500), 300, imageSrc);
   pelton_turbine_panorama.link(Block_9_panorama, new Vector3(500, 0, 1000), 100, imageSrc);
-  pelton_turbine_panorama.link(KU_Admin_panorama, new Vector3(1500, 100, 0), 100, imageSrc);
+  pelton_turbine_panorama.link(KU_Corner_panorama, new Vector3(1500, 100, 0), 100, imageSrc);
   pelton_turbine_panorama.link(ku_gate_panorama, new Vector3(-700, -100, 1000), 100, imageSrc);
-
+  pelton_turbine_panorama.link(KU_Admin_panorama, new Vector3(1500, 400, 700), 100, imageSrc);
 
   Block_10_panorama.link(Multipurpose_Hall_road_panorama, new Vector3(-1500, -1000, -4500), 300, imageSrc);
   Block_10_panorama.link(pelton_turbine_panorama, new Vector3(300, -100, 1000), 100, imageSrc);
@@ -284,29 +284,60 @@ const panoFunction = (imagePan, divElement) => {
   Multipurpose_Hall_road_panorama.link(Block_10_panorama, new Vector3(1500, -100, 1000), 200, imageSrc);
 
   Civil_Department_panorama.link(Bus_Park_panorama, new Vector3(-100, -1000, -4500), 300, imageSrc);
+  Civil_Department_panorama.link(KU_Corner_panorama, new Vector3(1500, 200, 0), 100, imageSrc);
   Civil_Department_panorama.link(Multipurpose_Hall_road_panorama, new Vector3(0, -100, 1000), 100, imageSrc);
 
   Bus_Park_panorama.link(Civil_Department_panorama, new Vector3(-2000, -100, -1000), 200, imageSrc);
-  Bus_Park_panorama.link(Boys_Hostel_panorama, new Vector3(3000, -100, -1000), 300, imageSrc);
+  Bus_Park_panorama.link(fountainii_panorama, new Vector3(-1, -1, 10), 1, imageSrc);
+  Bus_Park_panorama.link(Boys_Hostel_panorama, panoPosition1, 500, imageSrc);
   //Boys_Hostel_panorama.link(,panoPosition1,300,imageSrc);
 
+  Boys_Hostel_panorama.link(Bus_Park_panorama, new Vector3(-2000, -100, -1000), 200, imageSrc);
+  
   Block_9_panorama.link(inge_panorama, new Vector3(1000, -200, 1000), 100, imageSrc);
-  // Block_9_panorama.link(pelton_turbine_panorama, new Vector3(10, -300, 100), 100, imageSrc);
-
+  Block_9_panorama.link(pelton_turbine_panorama, new Vector3(-750, 100, -350), 100, imageSrc);
+ 
   inge_panorama.link(ttl_panorama, new Vector3(1000, -200, -100), 100, imageSrc);
+  inge_panorama.link(Block_9_panorama, new Vector3(-2000, -100, -300), 200, imageSrc);
+  
   ttl_panorama.link(khetan_panorama, new Vector3(1000, 700, -1500), 300, imageSrc);
-  khetan_panorama.link(bt_panorama, new Vector3(1000, -200, -100), 100, imageSrc);
+  ttl_panorama.link(inge_panorama, new Vector3(-500, 0, 100), 50, imageSrc);
+  
+  khetan_panorama.link(bt_panorama, new Vector3(1500, -500, 100), 100, imageSrc);
+  khetan_panorama.link(ttl_panorama, new Vector3(100, -400, 500), 100, imageSrc);
+  khetan_panorama.link(KU_Admin_panorama, new Vector3(-800, 0, -100), 100, imageSrc);
+  
   bt_panorama.link(golo_ghar_panorama, new Vector3(100, -300, 1000), 100, imageSrc);
-  golo_ghar_panorama.link(science_panorama, new Vector3(5800, 0, 200), 300, imageSrc);
-  science_panorama.link(fountainii_panorama, new Vector3(5800, 2000, 200), 300, imageSrc);
+  bt_panorama.link(khetan_panorama, new Vector3(-20, 0, -100), 10, imageSrc);
+  bt_panorama.link(KU_Admin_panorama, new Vector3(1000, 10, -100), 100, imageSrc);
+  
+  golo_ghar_panorama.link(science_panorama, new Vector3(800, 0, -200), 100, imageSrc);
+  golo_ghar_panorama.link(bt_panorama, new Vector3(-800, 0, -100), 100, imageSrc);
+  
+  science_panorama.link(Fountain_panorama, new Vector3(25, 25, -100), 10, imageSrc);
+  science_panorama.link(golo_ghar_panorama, new Vector3(1000, -200, 1000), 100, imageSrc);
+  
   fountainii_panorama.link(Fountain_panorama, new Vector3(-2000, 300, -10), 200, imageSrc);
-  Fountain_panorama.link(library_panorama, new Vector3(-2000, 300, -10), 300, imageSrc);
-
-  library_panorama.link(KU_Admin_panorama, new Vector3(-1000, 70, 700), 200, imageSrc);
-  library_panorama.link(KU_Corner_panorama, new Vector3(-1000, 70, -700), 200, imageSrc);
-
-  KU_Corner_panorama.link(KU_Admin_panorama, panoPosition1, 300, imageSrc);
-  KU_Admin_panorama.link(Block_9_panorama, panoPosition2, 300, imageSrc);
+  fountainii_panorama.link(Bus_Park_panorama, new Vector3(1, -2, -10), 2, imageSrc);
+  
+  Fountain_panorama.link(library_panorama, new Vector3(-15, 2, 10), 2, imageSrc);
+  Fountain_panorama.link(fountainii_panorama, new Vector3(2000, -100, 100), 200, imageSrc);
+  Fountain_panorama.link(KU_Corner_panorama, new Vector3(-500, -200, -3000), 200, imageSrc);
+  Fountain_panorama.link(science_panorama, new Vector3(500, -100, 1000), 100, imageSrc);
+  Fountain_panorama.link(KU_Admin_panorama, new Vector3(-15, -2, 100), 10, imageSrc);
+  
+  library_panorama.link(KU_Admin_panorama, new Vector3(100, 30, 700), 100, imageSrc);
+  library_panorama.link(KU_Corner_panorama, new Vector3(0, 0, -100), 10, imageSrc);
+  library_panorama.link(Fountain_panorama, new Vector3(1000, 30, 700), 100, imageSrc);
+  
+  KU_Corner_panorama.link(library_panorama, panoPosition1, 500, imageSrc);
+  KU_Corner_panorama.link(pelton_turbine_panorama, new Vector3(0, 0, 10), 1, imageSrc);  
+  KU_Corner_panorama.link(Fountain_panorama, new Vector3(2, 0, -10), 2, imageSrc);
+  
+  KU_Admin_panorama.link(pelton_turbine_panorama,new Vector3(2, 0, -20), 2, imageSrc);
+  KU_Admin_panorama.link(Fountain_panorama, new Vector3(0, 0, 10), 1, imageSrc);
+  KU_Admin_panorama.link(bt_panorama, new Vector3(-1500, -1000, -4500), 300, imageSrc);
+  KU_Admin_panorama.link(library_panorama,  panoPosition1, 400, imageSrc);
 
 };
 

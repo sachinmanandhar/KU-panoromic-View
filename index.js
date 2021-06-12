@@ -667,7 +667,7 @@ var RasterImg = new ImageLayer({
 */
 var wmsSource = new TileWMS({
   url: 'http://localhost:8080/geoserver/wms',
-  params: { 'LAYERS': 'KU:geotiff_coverage', 'TILED': true },
+  params: { 'LAYERS': 'ku_map:odm_orthophoto', 'TILED': true },
   serverType: 'geoserver',
 });
 
@@ -830,10 +830,14 @@ const SearchFunction = () => {
       });
       SourceV.clear();
       SourceV.addFeature(LineFeature);
+      const SearchCoordinate = LineFeature.getGeometry().getCoordinates();   
+      map.getView().setCenter(SearchCoordinate[0]);
+      map.getView().setZoom(map.getView().getZoom()+0.5);
+
       panoContainer.innerHTML = ""
       var Btable = document.getElementById('BuildingTable');
 
-
+      
       tableFunction(Btable, building_name, office_one, office_two, office_three, office_four);
       document.getElementById("RouteBtnSec").style.display = "inline";
       var RBtn = document.getElementById("RouteBtnCore");
@@ -853,15 +857,15 @@ SearchSubmitBtn.onclick = () => {
   SearchFunction();
 };
 
-var routeSubmitBtn = document.getElementById("routeSubmitBtn");
+// var routeSubmitBtn = document.getElementById("routeSubmitBtn");
 
-routeSubmitBtn.onclick = () => {
-  var RouteSelect = document.getElementById('RouteSelectID');
-  SubmitFunction(RouteSelect.value);
+// routeSubmitBtn.onclick = () => {
+//   var RouteSelect = document.getElementById('RouteSelectID');
+//   SubmitFunction(RouteSelect.value);
 
-  topFunction();
+//   topFunction();
 
-};
+// };
 function readTextFile(file, callback) {
   var rawFile = new XMLHttpRequest();
   rawFile.overrideMimeType("application/json");
@@ -874,17 +878,31 @@ function readTextFile(file, callback) {
   rawFile.send(null);
 }
 var OfficeInfoTable = (office) => {
+  // console.log(office,"this is office nigaar")
   var FinalData = null;
   // document.getElementById('InfoDiv').innerHTML = "";
   readTextFile("data/DepartmentContacts.json", (text) => {
     var data = JSON.parse(text);
+    console.log(data,"all data")
+    console.log(office)
     // console.log(data)
+
     var dat = data.find(element => element.Office = office);
     for (var i = 0; i < data.length; i++) {
       // console.log(data[i].Office)
-      if (data[i].Office == office) {
+      if (data[i].Office == office.trim()) {
         FinalData = data[i]
       }
+      // else 
+      // {
+      //   FinalData = {
+      //     Office:"",
+      //     Person_Incharge:"",
+      //     Email:"",
+      //     Phone_Number:"",
+      //     Floor:""
+      //   }
+      // }
     }
 
     console.log(FinalData || "No Data");

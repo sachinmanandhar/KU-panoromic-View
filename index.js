@@ -90,254 +90,266 @@ const panoDivChangeStyle2 = () => {
 // const panoImage = document.querySelector('#popup-content');
 
 const panoFunction = (imagePan, divElement) => {
-  document.getElementById('InfoDiv').innerHTML = ""
-  var panoContainer = document.getElementById(divElement);
-  content.style.overflow = "hidden";
-  panoContainer.innerHTML = "";
-  panoDivChangeStyle1();
-  document.getElementById('BuildingTable').innerHTML = ""
-  const Pelton_Turbine = 'image/pano5.jpg';
-  const Block_10 = 'image/pano8.jpg';
-  const Bus_Park = 'image/pano1.jpg';
-  const Boys_Hostel = 'image/pano2.jpg';
-  const Civil_Department = 'image/pano3.jpg';
-  const Fountain = 'image/pano4.jpg';
-  const Multipurpose_Hall_road = 'image/pano7.jpg';
-  const KU_Admin = 'image/pano9.jpg';
-  const KU_Corner = 'image/pano10.jpg';
-  const Block_9 = 'image/pano11.jpg';
-  const inge = 'image/pano12.jpg';
-  const ttl = 'image/pano13.jpg';
-  const khetan = 'image/pano14.jpg';
-  const bt = 'image/pano15.jpg';
-  const golo_ghar = 'image/pano16.jpg';
-  const science = 'image/pano17.jpg';
-  const fountainii = 'image/pano19.jpg';
-  const library = 'image/pano20.jpg';
-  const KU_gate = 'image/pano6.jpg';
+    document.getElementById('InfoDiv').innerHTML = ""
+    var panoContainer = document.getElementById(divElement);
+    content.style.overflow = "hidden";
+    panoContainer.innerHTML = "";
+    panoDivChangeStyle1();
+    document.getElementById('BuildingTable').innerHTML = ""
 
+    readTextFile("data/ImageLink.json", (text) => {
+      var ImageUrl = JSON.parse(text);
+      const ImagePanorama = {};
+      for (const items in ImageUrl){
+        
+        var itemsData= new pano.ImagePanorama(ImageUrl[items]);
+        var itemsName = items + '_panorama';
+        ImagePanorama[itemsName] = itemsData
 
+        //  eval(itemsName + "=" + itemsData);
+      }
+      const viewer = new pano.Viewer({
+        container: panoContainer
+      });
+      // var type_snake_case = imagePan.split(/(?=[A-Z])/).join("_").toLowerCase();
+      // console.log(type_snake_case);
+      // viewer.add(ImagePanorama[type_snake_case]);
+    if (imagePan == "KU gate") {
+      viewer.add(ImagePanorama['ku_gate_panorama']);
+    }
+    else if (imagePan == "Pelton Turbine") {
+      viewer.add(ImagePanorama['pelton_turbine_panorama']);
+    }
+    else if (imagePan == "Block 10") {
+      viewer.add(ImagePanorama['block_10_panorama']);
+    }
+    else if (imagePan == "Multipurpose Hall road") {
+      viewer.add(ImagePanorama['multi_purpose_hall_road_panorama']);
+    }
+    else if (imagePan == "Civil Department") {
+      viewer.add(ImagePanorama['civil_department_panorama']);
+    }
+    else if (imagePan == "Bus Park") {
+      viewer.add(ImagePanorama['bus_park_panorama']);
+    }
+    else if (imagePan == "Boys Hostel") {
+      viewer.add(ImagePanorama['boys_hostel_panorama']);
+    }
+    else if (imagePan == "Block 9") {
+      viewer.add(ImagePanorama['block_9_panorama']);
+    }
+    else if (imagePan == "inge") {
+      viewer.add(ImagePanorama['inge_panorama']);
+    }
+    else if (imagePan == "TTL") {
+      viewer.add(ImagePanorama['ttl_panorama']);
+    }
+    else if (imagePan == "khetan") {
+      viewer.add(ImagePanorama['khetan_panorama']);
+    }
+    else if (imagePan == "BT") {
+      viewer.add(ImagePanorama['bt_panorama']);
+    }
+    else if (imagePan == "Golo Ghar") {
+      viewer.add(ImagePanorama['golo_ghar_panorama']);
+    }
+    else if (imagePan == "science") {
+      viewer.add(ImagePanorama['science_panorama']);
+    }
+    else if (imagePan == "kufountainII") {
+      viewer.add(ImagePanorama['fountainii_panorama']);
+    }
+    else if (imagePan == "Fountain") {
+      viewer.add(ImagePanorama['Fountain_panorama']);
+    }
+    else if (imagePan == "library") {
+      viewer.add(ImagePanorama['library_panorama']);
+    }
+    else if (imagePan == "KU corner") {
+      viewer.add(ImagePanorama['ku_corner_panorama']);
+    }
+    else if (imagePan == "KU Admin") {
+      viewer.add(ImagePanorama['ku_admin_panorama']);
+    }
+    for (const panorama in ImagePanorama){
+      viewer.add(ImagePanorama[panorama]);
+    };
+    const panoPosition1 = new Vector3(5800, 0, 200)
+    const panoPosition2 = new Vector3(1000, 300, 1000);
+    const imageScale = 300;
+    const imageSrc = pano.DataImage.Arrow;
+    const DataInfoIcon = pano.DataImage.Info 
+    
+    const NumberInfospot = 20;
+    var infospot = [];
+    for (let i = 0; i <= NumberInfospot; i++) {
+      infospot[i] =  new pano.Infospot(100, imageSrc);
+    } 
+    ImagePanorama['ku_gate_panorama'].link(ImagePanorama['pelton_turbine_panorama'], panoPosition1, 300, imageSrc);
+  
+      var infospot1 = new pano.Infospot(300, imageSrc);
+       infospot1.position.set(5800, 0, 200);
+      infospot1.addHoverText('Kathmandu Univeristy Main Entrance', 40);
+      ImagePanorama['ku_gate_panorama'].add(infospot1);
 
+  // var infospot = new pano.Infospot(300, DataInfoIcon);
+  // infospot.position.set(5800, 200, 200);
+  // infospot.addHoverElement(document.getElementById('desc-container'), 100);
+  // ku_gate_panorama.add(infospot);
 
-  const ku_gate_panorama = new pano.ImagePanorama(KU_gate);
-  const pelton_turbine_panorama = new pano.ImagePanorama(Pelton_Turbine);
-  const Block_10_panorama = new pano.ImagePanorama(Block_10);
-  const Multipurpose_Hall_road_panorama = new pano.ImagePanorama(Multipurpose_Hall_road);
-  const Civil_Department_panorama = new pano.ImagePanorama(Civil_Department);
-  const Bus_Park_panorama = new pano.ImagePanorama(Bus_Park);
-  const Boys_Hostel_panorama = new pano.ImagePanorama(Boys_Hostel);
-  const Block_9_panorama = new pano.ImagePanorama(Block_9);
-  const inge_panorama = new pano.ImagePanorama(inge);
-  const ttl_panorama = new pano.ImagePanorama(ttl);
-  const khetan_panorama = new pano.ImagePanorama(khetan);
-  const bt_panorama = new pano.ImagePanorama(bt);
-  const golo_ghar_panorama = new pano.ImagePanorama(golo_ghar);
-  const science_panorama = new pano.ImagePanorama(science);
-  const fountainii_panorama = new pano.ImagePanorama(fountainii);
-  const Fountain_panorama = new pano.ImagePanorama(Fountain);
-  const library_panorama = new pano.ImagePanorama(library);
-  const KU_Corner_panorama = new pano.ImagePanorama(KU_Corner);
-  const KU_Admin_panorama = new pano.ImagePanorama(KU_Admin);
+    ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['block_10_panorama'], new Vector3(3000, 0, -2500), 300, imageSrc);
+    var infospot2 = new pano.Infospot(300, imageSrc);
+    infospot2.position.set(3000, 0, -2500);
+    infospot2.addHoverText('[Block 10, Block 11, Block 12, KU Boys Hostel]', 40);
+    ImagePanorama['pelton_turbine_panorama'].add(infospot2);
 
+    ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['block_9_panorama'], new Vector3(500, 0, 1000), 100, imageSrc);
+    var infospot3 = new pano.Infospot(300, imageSrc);
+    infospot3.position.set(500, 0, 1000);
+    infospot3.addHoverText('Block 9, Office of Dean, Office of Associate Dean', 40);
+    ImagePanorama['pelton_turbine_panorama'].add(infospot3);
 
+    ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 100, 0), 100, imageSrc);
+    var infospot4 = new pano.Infospot(300, imageSrc);
+    infospot4.position.set(1500, 100, 0);
+    infospot4.addHoverText('Administrative Block, Office of Vice Chancellor, Office of Registrar', 40);
+    ImagePanorama['pelton_turbine_panorama'].add(infospot4);
 
-  //const otherPanorama=new pano.ImagePanorama(imagePan1);
-  //const otherPanorama1=new pano.ImagePanorama(imagePan2);
+    ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_gate_panorama'], new Vector3(-700, -100, 1000), 100, imageSrc);
+    ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(1500, 400, 700), 100, imageSrc);  
+    var infospot9 = new pano.Infospot(300, imageSrc);
+    infospot9.position.set(1500, 400, 700);
+    infospot9.addHoverText('KU Canteen, Fountain', 40);
+    ImagePanorama['pelton_turbine_panorama'].add(infospot9);
 
+    ImagePanorama['block_10_panorama'].link(ImagePanorama['multi_purpose_hall_road_panorama'], new Vector3(-1500, -1000, -4500), 300, imageSrc);
+    var infospot5 = new pano.Infospot(300, imageSrc);
+    infospot5.position.set(-1500, -1000, -4500);
+    infospot5.addHoverText('Block 11, Block 12, KU Boys Hostel', 40);
+    ImagePanorama['block_10_panorama'].add(infospot5);
 
+    ImagePanorama['block_10_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(300, -100, 1000), 100, imageSrc);
+  
+    ImagePanorama['multi_purpose_hall_road_panorama'].link(ImagePanorama['civil_department_panorama'], new Vector3(-2500, -1000, -4500), 300, imageSrc);
+    var infospot6 = new pano.Infospot(300, imageSrc);
+    infospot6.position.set(-2500, -1000, -4500);
+    infospot6.addHoverText('Block 12, KU Mess, KU Boys Hostel', 40);
+    ImagePanorama['multi_purpose_hall_road_panorama'].add(infospot6);
 
-  const viewer = new pano.Viewer({
-    container: panoContainer
+    ImagePanorama['multi_purpose_hall_road_panorama'].link(ImagePanorama['block_10_panorama'], new Vector3(1500, -100, 1000), 200, imageSrc);
+
+    ImagePanorama['civil_department_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(-100, -1000, -4500), 300, imageSrc);
+    var infospot7 = new pano.Infospot(300, imageSrc);
+    infospot7.position.set(-100, -1000, -4500);
+    infospot7.addHoverText('KU Mess, KU Boys Hostel', 40);
+    ImagePanorama['civil_department_panorama'].add(infospot7);
+
+    ImagePanorama['civil_department_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 200, 0), 100, imageSrc);
+    var infospot7 = new pano.Infospot(300, imageSrc);
+    infospot7.position.set(1500, 200, 0);
+    infospot7.addHoverText('KU Library, KU Administrative Office', 40);
+    ImagePanorama['civil_department_panorama'].add(infospot7);
+
+    ImagePanorama['civil_department_panorama'].link(ImagePanorama['multi_purpose_hall_road_panorama'], new Vector3(0, -100, 1000), 100, imageSrc);
+
+    ImagePanorama['bus_park_panorama'].link(ImagePanorama['civil_department_panorama'], new Vector3(-2000, -100, -1000), 200, imageSrc);
+    ImagePanorama['bus_park_panorama'].link(ImagePanorama['fountainii_panorama'], new Vector3(-1, -1, 10), 1, imageSrc);
+    var infospot8 = new pano.Infospot(300, imageSrc);
+    infospot8.position.set(-1, -1, 10);
+    infospot8.addHoverText('KU Fountain, Bank', 40);
+    ImagePanorama['bus_park_panorama'].add(infospot8);
+
+    ImagePanorama['bus_park_panorama'].link(ImagePanorama['boys_hostel_panorama'], panoPosition1, 500, imageSrc);
+    //ImagePanorama['boys_hostel_panorama'].link(,panoPosition1,300,imageSrc);
+
+    ImagePanorama['boys_hostel_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(-2000, -100, -1000), 200, imageSrc);
+
+    ImagePanorama['block_9_panorama'].link(ImagePanorama['inge_panorama'], new Vector3(1000, -200, 1000), 100, imageSrc);
+    ImagePanorama['block_9_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(-750, 100, -350), 100, imageSrc);
+
+    ImagePanorama['inge_panorama'].link(ImagePanorama['ttl_panorama'], new Vector3(1000, -200, -100), 100, imageSrc);
+    ImagePanorama['inge_panorama'].link(ImagePanorama['block_9_panorama'], new Vector3(-2000, -100, -300), 200, imageSrc);
+
+    ImagePanorama['ttl_panorama'].link(ImagePanorama['khetan_panorama'], new Vector3(1000, 700, -1500), 300, imageSrc);
+    ImagePanorama['ttl_panorama'].link(ImagePanorama['inge_panorama'], new Vector3(-500, 0, 100), 50, imageSrc);
+
+    ImagePanorama['khetan_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(1500, -500, 100), 100, imageSrc);
+    ImagePanorama['khetan_panorama'].link(ImagePanorama['ttl_panorama'], new Vector3(100, -400, 500), 100, imageSrc);
+    ImagePanorama['khetan_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(-800, 0, -100), 100, imageSrc);
+
+    ImagePanorama['bt_panorama'].link(ImagePanorama['golo_ghar_panorama'], new Vector3(100, -300, 1000), 100, imageSrc);
+    ImagePanorama['bt_panorama'].link(ImagePanorama['khetan_panorama'], new Vector3(-20, 0, -100), 10, imageSrc);
+    ImagePanorama['bt_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(1000, 10, -100), 100, imageSrc);
+
+    ImagePanorama['golo_ghar_panorama'].link(ImagePanorama['science_panorama'], new Vector3(800, 0, -200), 100, imageSrc);
+    ImagePanorama['golo_ghar_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(-800, 0, -100), 100, imageSrc);
+
+    ImagePanorama['science_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(25, 25, -100), 10, imageSrc);
+    ImagePanorama['science_panorama'].link(ImagePanorama['golo_ghar_panorama'], new Vector3(1000, -200, 1000), 100, imageSrc);
+
+    ImagePanorama['fountainii_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(-2000, 300, -10), 200, imageSrc);
+    var infospot9 = new pano.Infospot(300, imageSrc);
+    infospot9.position.set(-2000, 300, -10);
+    infospot9.addHoverText('KU Library', 40);
+    ImagePanorama['fountainii_panorama'].add(infospot9);
+
+    ImagePanorama['fountainii_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(1, -2, -10), 2, imageSrc);
+
+    ImagePanorama['Fountain_panorama'].link(ImagePanorama['library_panorama'], new Vector3(-15, 2, 10), 2, imageSrc);
+    ImagePanorama['Fountain_panorama'].link(ImagePanorama['fountainii_panorama'], new Vector3(2000, -100, 100), 200, imageSrc);
+    ImagePanorama['Fountain_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(-500, -200, -3000), 200, imageSrc);
+    ImagePanorama['Fountain_panorama'].link(ImagePanorama['science_panorama'], new Vector3(500, -100, 1000), 100, imageSrc);
+    ImagePanorama['Fountain_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(-15, -2, 100), 10, imageSrc);
+
+    ImagePanorama['library_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(100, 30, 700), 100, imageSrc);
+    ImagePanorama['library_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(0, 0, -100), 10, imageSrc);
+    ImagePanorama['library_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(1000, 30, 700), 100, imageSrc);
+
+    ImagePanorama['ku_corner_panorama'].link(ImagePanorama['library_panorama'], panoPosition1, 500, imageSrc);
+    ImagePanorama['ku_corner_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(0, 0, 10), 1, imageSrc);
+    ImagePanorama['ku_corner_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(2, 0, -10), 2, imageSrc);
+
+    ImagePanorama['ku_admin_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(2, 0, -20), 2, imageSrc);
+    
+    ImagePanorama['ku_admin_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(0, 0, 10), 1, imageSrc);
+    var infospot10 = new pano.Infospot(300, imageSrc);
+    infospot10.position.set(0, 0, 10);
+    infospot10.addHoverText('Fountain', 40);
+    ImagePanorama['ku_admin_panorama'].add(infospot10);
+
+    ImagePanorama['ku_admin_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(-1500, -1000, -4500), 300, imageSrc);
+    var infospot10 = new pano.Infospot(300, imageSrc);
+    infospot11.position.set(-1500, -1000, -4500);
+    infospot11.addHoverText('Block 7', 40);
+    ImagePanorama['ku_admin_panorama'].add(infospot11);
+
+    ImagePanorama['ku_admin_panorama'].link(ImagePanorama['library_panorama'], panoPosition1, 400, imageSrc);
+    var infospot10 = new pano.Infospot(300, imageSrc);
+    infospot12.position.set(5800, 0, 200);
+    infospot12.addHoverText('Library', 40);
+    ImagePanorama['ku_admin_panorama'].add(infospot12);
   });
 
-  const ViewerFunction = () => {
-    viewer.add(ku_gate_panorama);
-    viewer.add(pelton_turbine_panorama);
-    viewer.add(Block_10_panorama);
-    viewer.add(Multipurpose_Hall_road_panorama);
-    viewer.add(Civil_Department_panorama);
-    viewer.add(Bus_Park_panorama);
-    viewer.add(Boys_Hostel_panorama);
-    viewer.add(Block_9_panorama);
-    viewer.add(inge_panorama);
-    viewer.add(ttl_panorama);
-    viewer.add(khetan_panorama);
-    viewer.add(bt_panorama);
-    viewer.add(golo_ghar_panorama);
-    viewer.add(science_panorama);
-    viewer.add(fountainii_panorama);
-    viewer.add(Fountain_panorama);
-    viewer.add(library_panorama);
-    viewer.add(KU_Corner_panorama);
-    viewer.add(KU_Admin_panorama);
+
+  // /*
+  // viewer.add(multi_purpose_hall_road_panorama);
+  // viewer.add(civil_department_panorama);
+  // viewer.add(ImagePanorama['bus_park_panorama']);
+  // viewer.add(boys_hostel_panorama);
+  // */
+  // //viewer.add(otherPanorama);
+  // //viewer.add(otherPanorama1);
 
 
-  }
-  if (imagePan == "KU gate") {
-    viewer.add(ku_gate_panorama);
-    ViewerFunction();
-
-  }
-  else if (imagePan == "Pelton Turbine") {
-    viewer.add(pelton_turbine_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Block 10") {
-    viewer.add(Block_10_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Multipurpose Hall road") {
-    viewer.add(Multipurpose_Hall_road_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Civil Department") {
-    viewer.add(Civil_Department_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Bus Park") {
-    viewer.add(Bus_Park_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Boys Hostel") {
-    viewer.add(Boys_Hostel_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Block 9") {
-    viewer.add(Block_9_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "inge") {
-    viewer.add(inge_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "TTL") {
-    viewer.add(ttl_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "khetan") {
-    viewer.add(khetan_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "BT") {
-    viewer.add(bt_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Golo Ghar") {
-    viewer.add(golo_ghar_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "science") {
-    viewer.add(science_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "kufountainII") {
-    viewer.add(fountainii_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "Fountain") {
-    viewer.add(Fountain_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "library") {
-    viewer.add(library_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "KU corner") {
-    viewer.add(KU_Corner_panorama);
-    ViewerFunction();
-  }
-  else if (imagePan == "KU Admin") {
-    viewer.add(KU_Admin_panorama);
-    ViewerFunction();
-
-  }
-
-  //viewer.add(ku_gate_panorama);
-
-  /*
-  viewer.add(Multipurpose_Hall_road_panorama);
-  viewer.add(Civil_Department_panorama);
-  viewer.add(Bus_Park_panorama);
-  viewer.add(Boys_Hostel_panorama);
-  */
-  //viewer.add(otherPanorama);
-  //viewer.add(otherPanorama1);
 
 
-  const panoPosition1 = new Vector3(5800, 0, 200)
-  const panoPosition2 = new Vector3(1000, 300, 1000);
-  const imageScale = 300;
-  const imageSrc = pano.DataImage.Arrow;
 
-  ku_gate_panorama.link(pelton_turbine_panorama, panoPosition1, 300, imageSrc);
 
-  pelton_turbine_panorama.link(Block_10_panorama, new Vector3(3000, 0, -2500), 300, imageSrc);
-  pelton_turbine_panorama.link(Block_9_panorama, new Vector3(500, 0, 1000), 100, imageSrc);
-  pelton_turbine_panorama.link(KU_Corner_panorama, new Vector3(1500, 100, 0), 100, imageSrc);
-  pelton_turbine_panorama.link(ku_gate_panorama, new Vector3(-700, -100, 1000), 100, imageSrc);
-  pelton_turbine_panorama.link(KU_Admin_panorama, new Vector3(1500, 400, 700), 100, imageSrc);
 
-  Block_10_panorama.link(Multipurpose_Hall_road_panorama, new Vector3(-1500, -1000, -4500), 300, imageSrc);
-  Block_10_panorama.link(pelton_turbine_panorama, new Vector3(300, -100, 1000), 100, imageSrc);
 
-  Multipurpose_Hall_road_panorama.link(Civil_Department_panorama, new Vector3(-2500, -1000, -4500), 300, imageSrc);
-  Multipurpose_Hall_road_panorama.link(Block_10_panorama, new Vector3(1500, -100, 1000), 200, imageSrc);
 
-  Civil_Department_panorama.link(Bus_Park_panorama, new Vector3(-100, -1000, -4500), 300, imageSrc);
-  Civil_Department_panorama.link(KU_Corner_panorama, new Vector3(1500, 200, 0), 100, imageSrc);
-  Civil_Department_panorama.link(Multipurpose_Hall_road_panorama, new Vector3(0, -100, 1000), 100, imageSrc);
 
-  Bus_Park_panorama.link(Civil_Department_panorama, new Vector3(-2000, -100, -1000), 200, imageSrc);
-  Bus_Park_panorama.link(fountainii_panorama, new Vector3(-1, -1, 10), 1, imageSrc);
-  Bus_Park_panorama.link(Boys_Hostel_panorama, panoPosition1, 500, imageSrc);
-  //Boys_Hostel_panorama.link(,panoPosition1,300,imageSrc);
 
-  Boys_Hostel_panorama.link(Bus_Park_panorama, new Vector3(-2000, -100, -1000), 200, imageSrc);
-  
-  Block_9_panorama.link(inge_panorama, new Vector3(1000, -200, 1000), 100, imageSrc);
-  Block_9_panorama.link(pelton_turbine_panorama, new Vector3(-750, 100, -350), 100, imageSrc);
- 
-  inge_panorama.link(ttl_panorama, new Vector3(1000, -200, -100), 100, imageSrc);
-  inge_panorama.link(Block_9_panorama, new Vector3(-2000, -100, -300), 200, imageSrc);
-  
-  ttl_panorama.link(khetan_panorama, new Vector3(1000, 700, -1500), 300, imageSrc);
-  ttl_panorama.link(inge_panorama, new Vector3(-500, 0, 100), 50, imageSrc);
-  
-  khetan_panorama.link(bt_panorama, new Vector3(1500, -500, 100), 100, imageSrc);
-  khetan_panorama.link(ttl_panorama, new Vector3(100, -400, 500), 100, imageSrc);
-  khetan_panorama.link(KU_Admin_panorama, new Vector3(-800, 0, -100), 100, imageSrc);
-  
-  bt_panorama.link(golo_ghar_panorama, new Vector3(100, -300, 1000), 100, imageSrc);
-  bt_panorama.link(khetan_panorama, new Vector3(-20, 0, -100), 10, imageSrc);
-  bt_panorama.link(KU_Admin_panorama, new Vector3(1000, 10, -100), 100, imageSrc);
-  
-  golo_ghar_panorama.link(science_panorama, new Vector3(800, 0, -200), 100, imageSrc);
-  golo_ghar_panorama.link(bt_panorama, new Vector3(-800, 0, -100), 100, imageSrc);
-  
-  science_panorama.link(Fountain_panorama, new Vector3(25, 25, -100), 10, imageSrc);
-  science_panorama.link(golo_ghar_panorama, new Vector3(1000, -200, 1000), 100, imageSrc);
-  
-  fountainii_panorama.link(Fountain_panorama, new Vector3(-2000, 300, -10), 200, imageSrc);
-  fountainii_panorama.link(Bus_Park_panorama, new Vector3(1, -2, -10), 2, imageSrc);
-  
-  Fountain_panorama.link(library_panorama, new Vector3(-15, 2, 10), 2, imageSrc);
-  Fountain_panorama.link(fountainii_panorama, new Vector3(2000, -100, 100), 200, imageSrc);
-  Fountain_panorama.link(KU_Corner_panorama, new Vector3(-500, -200, -3000), 200, imageSrc);
-  Fountain_panorama.link(science_panorama, new Vector3(500, -100, 1000), 100, imageSrc);
-  Fountain_panorama.link(KU_Admin_panorama, new Vector3(-15, -2, 100), 10, imageSrc);
-  
-  library_panorama.link(KU_Admin_panorama, new Vector3(100, 30, 700), 100, imageSrc);
-  library_panorama.link(KU_Corner_panorama, new Vector3(0, 0, -100), 10, imageSrc);
-  library_panorama.link(Fountain_panorama, new Vector3(1000, 30, 700), 100, imageSrc);
-  
-  KU_Corner_panorama.link(library_panorama, panoPosition1, 500, imageSrc);
-  KU_Corner_panorama.link(pelton_turbine_panorama, new Vector3(0, 0, 10), 1, imageSrc);  
-  KU_Corner_panorama.link(Fountain_panorama, new Vector3(2, 0, -10), 2, imageSrc);
-  
-  KU_Admin_panorama.link(pelton_turbine_panorama,new Vector3(2, 0, -20), 2, imageSrc);
-  KU_Admin_panorama.link(Fountain_panorama, new Vector3(0, 0, 10), 1, imageSrc);
-  KU_Admin_panorama.link(bt_panorama, new Vector3(-1500, -1000, -4500), 300, imageSrc);
-  KU_Admin_panorama.link(library_panorama,  panoPosition1, 400, imageSrc);
 
 };
 
@@ -356,10 +368,7 @@ const panoFunction = (imagePan, divElement) => {
 //   infospot.addHoverText('Office of Dean', 40);
 //   panorama.add(infospot);
 
-//   const infospot1 = new pano.Infospot(300, pano.DataImage.info);
-//   infospot1.position.set(0, 0, 5000);
-//   infospot1.addHoverText('Office of Asoociate Dean', 40);
-//   panorama.add(infospot1);
+
 
 // };
 
@@ -830,14 +839,14 @@ const SearchFunction = () => {
       });
       SourceV.clear();
       SourceV.addFeature(LineFeature);
-      const SearchCoordinate = LineFeature.getGeometry().getCoordinates();   
+      const SearchCoordinate = LineFeature.getGeometry().getCoordinates();
       map.getView().setCenter(SearchCoordinate[0]);
-      map.getView().setZoom(map.getView().getZoom()+0.5);
+      map.getView().setZoom(map.getView().getZoom() + 0.5);
 
       panoContainer.innerHTML = ""
       var Btable = document.getElementById('BuildingTable');
 
-      
+
       tableFunction(Btable, building_name, office_one, office_two, office_three, office_four);
       document.getElementById("RouteBtnSec").style.display = "inline";
       var RBtn = document.getElementById("RouteBtnCore");
@@ -883,8 +892,7 @@ var OfficeInfoTable = (office) => {
   // document.getElementById('InfoDiv').innerHTML = "";
   readTextFile("data/DepartmentContacts.json", (text) => {
     var data = JSON.parse(text);
-    console.log(data,"all data")
-    console.log(office)
+
     // console.log(data)
 
     var dat = data.find(element => element.Office = office);
@@ -1020,7 +1028,7 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
     });
   }
-  Btable.rows[0].cells[0].style.width="25%";
+  Btable.rows[0].cells[0].style.width = "25%";
   if (Btable.rows[2]) {
     Btable.rows[2].cells[1].addEventListener("click", () => {
 
@@ -1395,8 +1403,25 @@ document.querySelectorAll('.BuildingLayer').forEach(el => {
 })
 
 
+var HoverLabelSelected = null;
+var BuildLabel = document.getElementById('VectorLabel');
+map.on('pointermove', function (e) {
+  // if (selected !== null) {
+  //   selected.setStyle(undefined);
+  //   selected = null;
+  // }
 
-
+  map.forEachFeatureAtPixel(e.pixel, function (f) {
+    HoverLabelSelected = f;
+    return true;
+  });
+  if (HoverLabelSelected) {
+    // console.log(HoverLabelSelected.get('Build_Name'));
+    BuildLabel.innerHTML = HoverLabelSelected.get('Build_Name');
+  } else {
+    BuildLabel.innerHTML = '&nbsp;';
+  }
+});
 
 map.on('pointermove', function (evt) {
   if (evt.dragging) {

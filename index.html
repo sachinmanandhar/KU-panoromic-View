@@ -41,6 +41,13 @@
 			font-weight: bold;
 
 		}
+		.VectorLabel{
+			position: absolute;
+			z-index: 9;
+			bottom: 3.5rem;
+			left: 5px;
+			font-weight: bold;		
+		}
 
 		.border {
 			padding: 10px;
@@ -340,6 +347,8 @@
 
 					<div class="MouseCord"></div>
 
+					<div class="VectorLabel" id ="VectorLabel"></div>
+
 				</div>
 				<div id="panoramic-section" class="main-content-display panoramic-view-section"
 					style="display:none;height:88vh;width:77vw;">
@@ -417,6 +426,11 @@
 			</form>
 		</div>
 	</div>
+	<div id="desc-container" style="display:none">
+		<!-- <iframe src="https://www.youtube.com/embed/D7icsuamx5E"></iframe> -->
+		<div class="title">Kathmandu University Entance Gate</div>
+		<div class="text">This is the main Entrance of Kathmandu University</div>
+	  </div>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>

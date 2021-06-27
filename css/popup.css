@@ -53,3 +53,20 @@
 .ol-popup-closer:after {
     content: "✖";
 }
+
+#desc-container {
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 200px;
+    min-height: 250px;
+    background: #fff;
+    color: #000;
+    border-radius: 3px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #desc-container > iframe {
+    border: none;
+    width:100%;
+  }

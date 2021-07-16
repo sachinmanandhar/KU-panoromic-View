@@ -204,20 +204,20 @@ const panoFunction = (imagePan, divElement) => {
     ImagePanorama['pelton_turbine_panorama'].add(infospot2);
 
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['block_9_panorama'], new Vector3(500, 0, 1000), 100, imageSrc);
-    var infospot3 = new pano.Infospot(300, imageSrc);
+    var infospot3 = new pano.Infospot(100, imageSrc);
     infospot3.position.set(500, 0, 1000);
     infospot3.addHoverText('Block 9, Office of Dean, Office of Associate Dean', 40);
     ImagePanorama['pelton_turbine_panorama'].add(infospot3);
 
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 100, 0), 100, imageSrc);
-    var infospot4 = new pano.Infospot(300, imageSrc);
+    var infospot4 = new pano.Infospot(100, imageSrc);
     infospot4.position.set(1500, 100, 0);
     infospot4.addHoverText('Administrative Block, Office of Vice Chancellor, Office of Registrar', 40);
     ImagePanorama['pelton_turbine_panorama'].add(infospot4);
 
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_gate_panorama'], new Vector3(-700, -100, 1000), 100, imageSrc);
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(1500, 400, 700), 100, imageSrc);  
-    var infospot9 = new pano.Infospot(300, imageSrc);
+    var infospot9 = new pano.Infospot(100, imageSrc);
     infospot9.position.set(1500, 400, 700);
     infospot9.addHoverText('KU Canteen, Fountain', 40);
     ImagePanorama['pelton_turbine_panorama'].add(infospot9);
@@ -245,7 +245,7 @@ const panoFunction = (imagePan, divElement) => {
     ImagePanorama['civil_department_panorama'].add(infospot7);
 
     ImagePanorama['civil_department_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 200, 0), 100, imageSrc);
-    var infospot7 = new pano.Infospot(300, imageSrc);
+    var infospot7 = new pano.Infospot(100, imageSrc);
     infospot7.position.set(1500, 200, 0);
     infospot7.addHoverText('KU Library, KU Administrative Office', 40);
     ImagePanorama['civil_department_panorama'].add(infospot7);
@@ -288,7 +288,7 @@ const panoFunction = (imagePan, divElement) => {
     ImagePanorama['science_panorama'].link(ImagePanorama['golo_ghar_panorama'], new Vector3(1000, -200, 1000), 100, imageSrc);
 
     ImagePanorama['fountainii_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(-2000, 300, -10), 200, imageSrc);
-    var infospot9 = new pano.Infospot(300, imageSrc);
+    var infospot9 = new pano.Infospot(200, imageSrc);
     infospot9.position.set(-2000, 300, -10);
     infospot9.addHoverText('KU Library', 40);
     ImagePanorama['fountainii_panorama'].add(infospot9);

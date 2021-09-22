@@ -77,11 +77,113 @@
 
 			<div class="list-group list-group-flush" style="overflow: auto;width:100%;margin-top: 35px;">
 				<div id="accordion">
+
+
 					<div class="card">
-						<div class="card-header" id="headingOne" style="padding-left: 2rem;">
+						<div class="card-header px-4" id="headingThree" >
+							<input class="form-check-input mt-2" type="checkbox" value="" id="campusCheckbox"
+							>
+							<h5 class="mb-0 d-flex justify-content-between" >
+
+								<button class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+									Campus
+								</button>
+
+								<div><img src="image/attraction.png" height="30"></div>
+							</h5>
+						</div>
+						<div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+							<div class="card-body">
+								<p class="border layerToggler" id="ku_corner_campus">KU Corner</p>
+								<p class="border layerToggler" id="silver_jublee_campus">Silver Jublee Monument</p>
+								<p class="border layerToggler" id="ku_fountain_campus">KU Fountain</p>
+								<p class="border layerToggler" id="saraswati_mandir_campus">Saraswati Mandir</p>
+								<p class="border layerToggler" id="ku_lawn_campus">KU Lawn</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="card">
+						<div class="card-header px-4" id="headingThree" >
+							<h5 class="mb-0 d-flex justify-content-between">
+								<input class="form-check-input mt-2" type="checkbox" value="" id="parking"
+									>
+								<button class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									Parking
+								</button>
+								<div><img src="image/parking.png" height="30"></div>
+							</h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+							data-parent="#accordion">
+							<div class="card-body">
+								<p class="border layerToggler" id="official_parking">KU Officials Parking</p>
+								<p class="border layerToggler" id="bus_parking">KU Bus Parking</p>
+								<p class="border layerToggler" id="private_vehicle_parking">Private Vehicle Parking</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header px-4" id="headingFour" >
+							<h5 class="mb-0 d-flex justify-content-between">
+								<input class="form-check-input mt-2" type="checkbox" value="" id="sports"
+									>
+								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix"
+									aria-expanded="false" aria-controls="collapseSix">
+									Sports & Recreational
+								</button>
+								<div><img src="image/sport.png" height="30"></div>
+							</h5>
+						</div>
+						<div id="collapseSix" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+							<div class="card-body">
+								<p class="border layerToggler" id="football_ground_sports">KU Football Ground</p>
+								<p class="border layerToggler" id="basket_ball_court_sports">Basketball Court</p>
+								<p class="border layerToggler" id="swimming_pool_sports">Swimming Pool</p>
+								<p class="border layerToggler" id="gym_sports">Gym</p>
+								<p class="border layerToggler" id="social_hall_sports">Sociall Hall</p>
+								<p class="border layerToggler" id="volley_ball_sports">Volley Ball Court</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header px-4" id="headingThree" >
+							<h5 class="mb-0 d-flex justify-content-between">
+								<input class="form-check-input mt-2" type="checkbox" value="" id="wifiCheckbox"
+									>
+								<button class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+									Wireless Hotspot
+								</button>
+								<div><img src="image/wifi.png" height="30"></div>
+							</h5>
+						</div>
+
+					</div>
+					<div class="card">
+						<div class="card-header px-4" id="headingTwo" >
+							<input class="form-check-input mt-2" type="checkbox" value="" id="panoCheckbox"
+								>
+							<h5 class="mb-0 d-flex justify-content-between">
+
+								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+									aria-expanded="false" aria-controls="collapseTwo">
+									Panorama Image
+									
+								</button>
+								<div><img src="image/cameraIcon.png" height="30"></div>
+							</h5>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header px-4" id="headingOne" >
 							<h5 class="mb-0">
 								<!-- <input class="form-check-input " type="checkbox" value="" id="adminCheckbox"
-									style="margin-top:10px"> -->
+									> -->
 								<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
 									aria-expanded="true" aria-controls="collapseOne">
 									Administrative Office
@@ -101,88 +203,9 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingTwo" style="padding-left: 2rem;">
-							<input class="form-check-input" type="checkbox" value="" id="panoCheckbox"
-								style="margin-top:10px">
+						<div class="card-header px-4" id="headingFour" >
 							<h5 class="mb-0">
-
-								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">
-									Panorama Image
-								</button>
-							</h5>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
-							<h5 class="mb-0">
-								<input class="form-check-input" type="checkbox" value="" id="campusCheckbox"
-									style="margin-top:10px">
-								<button class="btn btn-link collapsed" data-toggle="collapse"
-									data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-									Campus
-								</button>
-							</h5>
-						</div>
-						<div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-							<div class="card-body">
-								<p class="border layerToggler" id="ku_corner_campus">KU Corner</p>
-								<p class="border layerToggler" id="silver_jublee_campus">Silver Jublee Monument</p>
-								<p class="border layerToggler" id="ku_fountain_campus">KU Fountain</p>
-								<p class="border layerToggler" id="saraswati_mandir_campus">Saraswati Mandir</p>
-								<p class="border layerToggler" id="ku_lawn_campus">KU Lawn</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
-							<h5 class="mb-0">
-								<input class="form-check-input" type="checkbox" value="" id="parking"
-									style="margin-top:10px">
-								<button class="btn btn-link collapsed" data-toggle="collapse"
-									data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									Parking
-								</button>
-							</h5>
-						</div>
-						<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-							data-parent="#accordion">
-							<div class="card-body">
-								<p class="border layerToggler" id="official_parking">KU Officials Parking</p>
-								<p class="border layerToggler" id="bus_parking">KU Bus Parking</p>
-								<p class="border layerToggler" id="private_vehicle_parking">Private Vehicle Parking</p>
-
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
-							<h5 class="mb-0">
-								<input class="form-check-input" type="checkbox" value="" id="sports"
-									style="margin-top:10px">
-								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix"
-									aria-expanded="false" aria-controls="collapseSix">
-									Sports & Recreational
-								</button>
-							</h5>
-						</div>
-						<div id="collapseSix" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-							<div class="card-body">
-								<p class="border layerToggler" id="football_ground_sports">KU Football Ground</p>
-								<p class="border layerToggler" id="basket_ball_court_sports">Basketball Court</p>
-								<p class="border layerToggler" id="swimming_pool_sports">Swimming Pool</p>
-								<p class="border layerToggler" id="gym_sports">Gym</p>
-								<p class="border layerToggler" id="social_hall_sports">Sociall Hall</p>
-								<p class="border layerToggler" id="volley_ball_sports">Volley Ball Court</p>
-
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
-							<h5 class="mb-0">
-								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
+								<!-- <input class="form-check-input" type="checkbox" value="" id="" > -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
 									data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
 									Canteen & Cafeteria
@@ -197,10 +220,12 @@
 							</div>
 						</div>
 					</div>
+
+
 					<div class="card">
-						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
+						<div class="card-header px-4" id="headingFour" >
 							<h5 class="mb-0">
-								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
+								<!-- <input class="form-check-input" type="checkbox" value="" id="" > -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
 									data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
 									Academics
@@ -215,9 +240,9 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
+						<div class="card-header px-4" id="headingFour" >
 							<h5 class="mb-0">
-								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
+								<!-- <input class="form-check-input" type="checkbox" value="" id="" > -->
 								<button class="btn btn-link collapsed" data-toggle="collapse"
 									data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
 									Venue
@@ -236,9 +261,9 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-header" id="headingFour" style="padding-left: 2rem;">
+						<div class="card-header px-4" id="headingFour" >
 							<h5 class="mb-0">
-								<!-- <input class="form-check-input" type="checkbox" value="" id="" style="margin-top:10px"> -->
+								<!-- <input class="form-check-input" type="checkbox" value="" id="" > -->
 								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen"
 									aria-expanded="false" aria-controls="collapseTen">
 									Campus Housing
@@ -261,9 +286,9 @@
 						<div class="card-header " id="headingTwo">
 							<h5 class="mb-0">
 								<input class="form-check-input" type="checkbox" value="" id="greenSpacesCheckbox"
-									style="margin-top:10px">
+									>
 								<input class="form-check-input " type="checkbox" value="" id="panoCheckbox"
-									style="margin-top:10px">
+									>
 								<button class="btn btn-link collapsed" data-toggle="collapse"
 									data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 									Green Spaces
@@ -273,19 +298,7 @@
 
 					</div> -->
 
-					<div class="card">
-						<div class="card-header" id="headingThree" style="padding-left: 2rem;">
-							<h5 class="mb-0">
-								<input class="form-check-input" type="checkbox" value="" id="wifiCheckbox"
-									style="margin-top:10px">
-								<button class="btn btn-link collapsed" data-toggle="collapse"
-									data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-									Wireless Hotspot
-								</button>
-							</h5>
-						</div>
 
-					</div>
 
 
 
@@ -327,7 +340,7 @@
 									placeholder="Search Buildings" aria-label="Search"
 									aria-describedby="search-addon" />
 								<span class="input-group-text border-0 ml-2" id="search-addon">
-									<i class="fas fa-search">search</i>
+									<i class="fas fa-search" style="cursor:pointer">search</i>
 								</span>
 							</div>
 						</li>
@@ -338,12 +351,15 @@
 
 			<div class="container-fluid">
 				<div id="map" style="height:88vh;width:100vw;position:relative;" class="main-content-display">
-
+			
+							<img src="image/target.svg" id="geo-location-icon" height = "40" width ="42" value="false"
+						style="margin-top:6rem;position: absolute;z-index: 9;background-color: dimgray;border-radius: 11px;cursor:pointer;">	
+					
 					<button class="btn btn-primary" id="menu-toggle"
-						style="margin-top:0px;position: absolute;z-index: 9;background-color: dimgray;">☰</button>
+						style="margin-top:0px;position: absolute;z-index: 9;background-color: dimgray;cursor:pointer;">☰</button>
 
 					<img src="image/House_fill.png" id="homeIcon"
-						style="margin-top:3rem;position: absolute;z-index: 9;background-color: dimgray;">
+						style="margin-top:3rem;position: absolute;z-index: 9;background-color: dimgray;cursor:pointer;">
 
 					<div class="MouseCord"></div>
 
@@ -413,7 +429,7 @@
 	</div>
 	<div class="modal ">
 		<div class="modal_contents">
-			<div class="modal_close-bar">
+			<div class="modal_close-bar px-2">
 				<span>X</span>
 			</div>
 			<h3 style="text-align:center">Welcome to the 3D View of Kathmandu University</h3>

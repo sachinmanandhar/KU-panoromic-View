@@ -46,7 +46,7 @@ min-width: 100vw;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-margin-left: -21.5rem;
+margin-left: -25.5vw;
 }
 
 @media (min-width: 768px) {

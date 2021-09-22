@@ -21,10 +21,12 @@ import { altKeyOnly, click, pointerMove } from 'ol/events/condition';
 // import { Image as ImageLayer } from 'ol/layer';
 import XYZ from 'ol/source/XYZ';
 import * as pano from 'panolens';
-import { Vector3 } from 'three';
+import { DstAlphaFactor, Vector3 } from 'three';
 import { Icon } from 'ol/style';
 import { LineString, Point } from 'ol/geom';
 import { Feature } from 'ol';
+import Geolocation from 'ol/Geolocation';
+import {Circle as CircleStyle} from 'ol/style';
 // import { selectFeatureControl } from 'ol/control';
 // import OLCesium from 'olcs/OLCesium.js';
 
@@ -80,14 +82,16 @@ function topFunction() {
 }
 
 const panoDivChangeStyle1 = () => {
-  panoContainer.style.height = "230px";
-  panoContainer.style.width = "230px";
+  panoContainer.style.height = "98%";
+  panoContainer.style.width = "98%";
 }
 const panoDivChangeStyle2 = () => {
   panoContainer.style.height = "auto";
   panoContainer.style.width = "auto";
 }
 // const panoImage = document.querySelector('#popup-content');
+
+
 
 const panoFunction = (imagePan, divElement) => {
     document.getElementById('InfoDiv').innerHTML = ""
@@ -180,17 +184,16 @@ const panoFunction = (imagePan, divElement) => {
     const imageSrc = pano.DataImage.Arrow;
     const DataInfoIcon = pano.DataImage.Info 
     
-    const NumberInfospot = 20;
-    var infospot = [];
-    for (let i = 0; i <= NumberInfospot; i++) {
-      infospot[i] =  new pano.Infospot(100, imageSrc);
-    } 
+  var infospotFunction = (HoverText,ImagePanoramaArgument,vectorPositionObject,iconSize=100) => {
+    let infospot = new pano.Infospot(iconSize, DataInfoIcon);
+    infospot.position.set(vectorPositionObject.x, vectorPositionObject.y, vectorPositionObject.z);
+   infospot.addHoverText(HoverText, 30);
+   ImagePanorama[ImagePanoramaArgument].add(infospot);
+  }
+
     ImagePanorama['ku_gate_panorama'].link(ImagePanorama['pelton_turbine_panorama'], panoPosition1, 300, imageSrc);
-  
-      var infospot1 = new pano.Infospot(300, imageSrc);
-       infospot1.position.set(5800, 0, 200);
-      infospot1.addHoverText('Kathmandu Univeristy Main Entrance', 40);
-      ImagePanorama['ku_gate_panorama'].add(infospot1);
+
+      infospotFunction('Kathmandu Univeristy Main Entrance','ku_gate_panorama',{x:5800, y:400, z:200},200);
 
   // var infospot = new pano.Infospot(300, DataInfoIcon);
   // infospot.position.set(5800, 200, 200);
@@ -198,84 +201,112 @@ const panoFunction = (imagePan, divElement) => {
   // ku_gate_panorama.add(infospot);
 
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['block_10_panorama'], new Vector3(3000, 0, -2500), 300, imageSrc);
-    var infospot2 = new pano.Infospot(300, imageSrc);
-    infospot2.position.set(3000, 0, -2500);
-    infospot2.addHoverText('[Block 10, Block 11, Block 12, KU Boys Hostel]', 40);
-    ImagePanorama['pelton_turbine_panorama'].add(infospot2);
+
+
+    infospotFunction('[Block 10, Block 11, Block 12, KU Boys Hostel]','pelton_turbine_panorama',{x:3000, y:300, z:-2500},);
+    infospotFunction('[Block 9, Office of Dean, Office of Associate Dean]','pelton_turbine_panorama',{x:500, y:100, z:1000},30);
+    infospotFunction('[Administrative Block, Office of Vice Chancellor, Office of Registrar]','pelton_turbine_panorama',{x:1500, y:200, z:0},50);
+    infospotFunction('[KU Canteen, Fountain]','pelton_turbine_panorama',{x:1500, y:600, z:700},80);
+
 
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['block_9_panorama'], new Vector3(500, 0, 1000), 100, imageSrc);
-    var infospot3 = new pano.Infospot(100, imageSrc);
-    infospot3.position.set(500, 0, 1000);
-    infospot3.addHoverText('Block 9, Office of Dean, Office of Associate Dean', 40);
-    ImagePanorama['pelton_turbine_panorama'].add(infospot3);
-
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 100, 0), 100, imageSrc);
-    var infospot4 = new pano.Infospot(100, imageSrc);
-    infospot4.position.set(1500, 100, 0);
-    infospot4.addHoverText('Administrative Block, Office of Vice Chancellor, Office of Registrar', 40);
-    ImagePanorama['pelton_turbine_panorama'].add(infospot4);
-
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_gate_panorama'], new Vector3(-700, -100, 1000), 100, imageSrc);
     ImagePanorama['pelton_turbine_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(1500, 400, 700), 100, imageSrc);  
-    var infospot9 = new pano.Infospot(100, imageSrc);
-    infospot9.position.set(1500, 400, 700);
-    infospot9.addHoverText('KU Canteen, Fountain', 40);
-    ImagePanorama['pelton_turbine_panorama'].add(infospot9);
+
 
     ImagePanorama['block_10_panorama'].link(ImagePanorama['multi_purpose_hall_road_panorama'], new Vector3(-1500, -1000, -4500), 300, imageSrc);
-    var infospot5 = new pano.Infospot(300, imageSrc);
-    infospot5.position.set(-1500, -1000, -4500);
-    infospot5.addHoverText('Block 11, Block 12, KU Boys Hostel', 40);
-    ImagePanorama['block_10_panorama'].add(infospot5);
+
+    infospotFunction('[Block 11, Block 12, KU Boys Hostel]','block_10_panorama',{x:-1500, y:-800, z:-4500},110);
 
     ImagePanorama['block_10_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(300, -100, 1000), 100, imageSrc);
   
     ImagePanorama['multi_purpose_hall_road_panorama'].link(ImagePanorama['civil_department_panorama'], new Vector3(-2500, -1000, -4500), 300, imageSrc);
-    var infospot6 = new pano.Infospot(300, imageSrc);
-    infospot6.position.set(-2500, -1000, -4500);
-    infospot6.addHoverText('Block 12, KU Mess, KU Boys Hostel', 40);
-    ImagePanorama['multi_purpose_hall_road_panorama'].add(infospot6);
+
+    infospotFunction('[Block 12, KU Mess, KU Boys Hostel]','multi_purpose_hall_road_panorama',{x:-2500, y:-800, z:-4500},120);
 
     ImagePanorama['multi_purpose_hall_road_panorama'].link(ImagePanorama['block_10_panorama'], new Vector3(1500, -100, 1000), 200, imageSrc);
 
     ImagePanorama['civil_department_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(-100, -1000, -4500), 300, imageSrc);
-    var infospot7 = new pano.Infospot(300, imageSrc);
-    infospot7.position.set(-100, -1000, -4500);
-    infospot7.addHoverText('KU Mess, KU Boys Hostel', 40);
-    ImagePanorama['civil_department_panorama'].add(infospot7);
+    infospotFunction('[KU Mess, KU Boys Hostel]','civil_department_panorama',{x:-100, y:-800, z:-4500},160);
 
     ImagePanorama['civil_department_panorama'].link(ImagePanorama['ku_corner_panorama'], new Vector3(1500, 200, 0), 100, imageSrc);
-    var infospot7 = new pano.Infospot(100, imageSrc);
-    infospot7.position.set(1500, 200, 0);
-    infospot7.addHoverText('KU Library, KU Administrative Office', 40);
-    ImagePanorama['civil_department_panorama'].add(infospot7);
+
+    infospotFunction('[KU Library, KU Administrative Office]','civil_department_panorama',{x:1500, y:300, z:0},100);
 
     ImagePanorama['civil_department_panorama'].link(ImagePanorama['multi_purpose_hall_road_panorama'], new Vector3(0, -100, 1000), 100, imageSrc);
 
     ImagePanorama['bus_park_panorama'].link(ImagePanorama['civil_department_panorama'], new Vector3(-2000, -100, -1000), 200, imageSrc);
     ImagePanorama['bus_park_panorama'].link(ImagePanorama['fountainii_panorama'], new Vector3(-1, -1, 10), 1, imageSrc);
-    var infospot8 = new pano.Infospot(300, imageSrc);
-    infospot8.position.set(-1, -1, 10);
-    infospot8.addHoverText('KU Fountain, Bank', 40);
-    ImagePanorama['bus_park_panorama'].add(infospot8);
+
+    infospotFunction('[KU Fountain, Bank]','bus_park_panorama',{x:-1, y:1, z:10},0.5);
 
     ImagePanorama['bus_park_panorama'].link(ImagePanorama['boys_hostel_panorama'], panoPosition1, 500, imageSrc);
     //ImagePanorama['boys_hostel_panorama'].link(,panoPosition1,300,imageSrc);
 
     ImagePanorama['boys_hostel_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(-2000, -100, -1000), 200, imageSrc);
 
+
+    infospotFunction('[Block 8, Turbine Testing Lab,School of Sciences]','block_9_panorama',{x:1000, y:0, z:1000},50);
+
+
     ImagePanorama['block_9_panorama'].link(ImagePanorama['inge_panorama'], new Vector3(1000, -200, 1000), 100, imageSrc);
     ImagePanorama['block_9_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(-750, 100, -350), 100, imageSrc);
+
+
+    infospotFunction('[Block 8,School of Sciences]','inge_panorama',{x:1000, y:0, z:-100},50);
+
+    // var infospot14 = new pano.Infospot(100, imageSrc);
+    // infospot14.position.set(1000, -200, -100);
+    // infospot14.addHoverText('Block 8,School of Sciences', 30);
+    // ImagePanorama['inge_panorama'].add(infospot14);
 
     ImagePanorama['inge_panorama'].link(ImagePanorama['ttl_panorama'], new Vector3(1000, -200, -100), 100, imageSrc);
     ImagePanorama['inge_panorama'].link(ImagePanorama['block_9_panorama'], new Vector3(-2000, -100, -300), 200, imageSrc);
 
+    infospotFunction('[Block 8,School of Sciences]','ttl_panorama',{x:1000, y:900, z:-1500},100);
+
+    // var infospot15 = new pano.Infospot(100, imageSrc);
+    // infospot15.position.set(1000, 700, -1500);
+    // infospot15.addHoverText('Block 8,School of Sciences', 30);
+    // ImagePanorama['ttl_panorama'].add(infospot15);
+
     ImagePanorama['ttl_panorama'].link(ImagePanorama['khetan_panorama'], new Vector3(1000, 700, -1500), 300, imageSrc);
     ImagePanorama['ttl_panorama'].link(ImagePanorama['inge_panorama'], new Vector3(-500, 0, 100), 50, imageSrc);
+
+
+    infospotFunction('[School of Sciences]','khetan_panorama',{x:1500, y:-400, z:100},50);
+
+    // var infospot16 = new pano.Infospot(100, imageSrc);
+    // infospot16.position.set(1500, -500, 100);
+    // infospot16.addHoverText('School of Sciences', 80);
+    // ImagePanorama['khetan_panorama'].add(infospot16);
+
+
+    infospotFunction('[Library, Canteen]','khetan_panorama',{x:-800, y:80, z:-100},30);
+
+    // var infospot17 = new pano.Infospot(100, imageSrc);
+    // infospot17.position.set(-800, 0, -100);
+    // infospot17.addHoverText('Library, Canteen', 90);
+    // ImagePanorama['khetan_panorama'].add(infospot17);
 
     ImagePanorama['khetan_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(1500, -500, 100), 100, imageSrc);
     ImagePanorama['khetan_panorama'].link(ImagePanorama['ttl_panorama'], new Vector3(100, -400, 500), 100, imageSrc);
     ImagePanorama['khetan_panorama'].link(ImagePanorama['ku_admin_panorama'], new Vector3(-800, 0, -100), 100, imageSrc);
+
+
+    infospotFunction('[Golo Ghar, Shade]','bt_panorama',{x:100, y:-150, z:1000},60);
+    infospotFunction('[School of Sciences, Library]','bt_panorama',{x:1000, y:20, z:-100},60);
+
+    // var infospot18 = new pano.Infospot(100, imageSrc);
+    // infospot18.position.set(100, -300, 1000);
+    // infospot18.addHoverText('Golo Ghar, Shade', 80);
+    // var infospot19 = new pano.Infospot(100, imageSrc);
+    // infospot19.position.set(1000, 10, -100);
+    // infospot19.addHoverText('School of Sciences, Library', 80);
+
+    // ImagePanorama['bt_panorama'].add(infospot19);
+    // ImagePanorama['bt_panorama'].add(infospot18);
 
     ImagePanorama['bt_panorama'].link(ImagePanorama['golo_ghar_panorama'], new Vector3(100, -300, 1000), 100, imageSrc);
     ImagePanorama['bt_panorama'].link(ImagePanorama['khetan_panorama'], new Vector3(-20, 0, -100), 10, imageSrc);
@@ -284,14 +315,25 @@ const panoFunction = (imagePan, divElement) => {
     ImagePanorama['golo_ghar_panorama'].link(ImagePanorama['science_panorama'], new Vector3(800, 0, -200), 100, imageSrc);
     ImagePanorama['golo_ghar_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(-800, 0, -100), 100, imageSrc);
 
+
+    infospotFunction('[KU Fountain]','science_panorama',{x:25, y:35, z:-100},30);
+
+    // var infospot20 = new pano.Infospot(100, imageSrc);
+    // infospot20.position.set(25, 25, -100);
+    // infospot20.addHoverText('KU Fountain', 8);
+    // ImagePanorama['science_panorama'].add(infospot20);
+
     ImagePanorama['science_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(25, 25, -100), 10, imageSrc);
     ImagePanorama['science_panorama'].link(ImagePanorama['golo_ghar_panorama'], new Vector3(1000, -200, 1000), 100, imageSrc);
 
-    ImagePanorama['fountainii_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(-2000, 300, -10), 200, imageSrc);
-    var infospot9 = new pano.Infospot(200, imageSrc);
-    infospot9.position.set(-2000, 300, -10);
-    infospot9.addHoverText('KU Library', 40);
-    ImagePanorama['fountainii_panorama'].add(infospot9);
+    ImagePanorama['fountainii_panorama'].link(ImagePanorama['fountainii_panorama'], new Vector3(-2000, 300, -10), 200, imageSrc);
+
+    infospotFunction('[KU Library]','science_panorama',{x:-2000, y:400, z:-10},60);
+
+    // var infospot9 = new pano.Infospot(200, imageSrc);
+    // infospot9.position.set(-2000, 300, -10);
+    // infospot9.addHoverText('KU Library', 40);
+    // ImagePanorama['fountainii_panorama'].add(infospot9);
 
     ImagePanorama['fountainii_panorama'].link(ImagePanorama['bus_park_panorama'], new Vector3(1, -2, -10), 2, imageSrc);
 
@@ -309,25 +351,41 @@ const panoFunction = (imagePan, divElement) => {
     ImagePanorama['ku_corner_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(0, 0, 10), 1, imageSrc);
     ImagePanorama['ku_corner_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(2, 0, -10), 2, imageSrc);
 
+    infospotFunction('[School of Science]','ku_admin_panorama',{x:-1500, y:-800, z:-4500},100);
+
+    // var infospot21 = new pano.Infospot(100, imageSrc);
+    // infospot21.position.set(-1500, -1000, -4500);
+    // infospot21.addHoverText('School of Science', 200);
+    // ImagePanorama['ku_admin_panorama'].add(infospot21);
+    
     ImagePanorama['ku_admin_panorama'].link(ImagePanorama['pelton_turbine_panorama'], new Vector3(2, 0, -20), 2, imageSrc);
     
     ImagePanorama['ku_admin_panorama'].link(ImagePanorama['Fountain_panorama'], new Vector3(0, 0, 10), 1, imageSrc);
-    var infospot10 = new pano.Infospot(300, imageSrc);
-    infospot10.position.set(0, 0, 10);
-    infospot10.addHoverText('Fountain', 40);
-    ImagePanorama['ku_admin_panorama'].add(infospot10);
+
+    infospotFunction('[Fountain]','ku_admin_panorama',{x:0, y:1, z:10},0.5);
+
+    // var infospot10 = new pano.Infospot(300, imageSrc);
+    // infospot10.position.set(0, 0, 10);
+    // infospot10.addHoverText('Fountain', 40);
+    // ImagePanorama['ku_admin_panorama'].add(infospot10);
 
     ImagePanorama['ku_admin_panorama'].link(ImagePanorama['bt_panorama'], new Vector3(-1500, -1000, -4500), 300, imageSrc);
-    var infospot10 = new pano.Infospot(300, imageSrc);
-    infospot11.position.set(-1500, -1000, -4500);
-    infospot11.addHoverText('Block 7', 40);
-    ImagePanorama['ku_admin_panorama'].add(infospot11);
+
+    infospotFunction('[Block 7]','ku_admin_panorama',{x:-1500, y:-800, z:-4500},100);
+
+    // var infospot10 = new pano.Infospot(300, imageSrc);
+    // infospot11.position.set(-1500, -1000, -4500);
+    // infospot11.addHoverText('Block 7', 40);
+    // ImagePanorama['ku_admin_panorama'].add(infospot11);
 
     ImagePanorama['ku_admin_panorama'].link(ImagePanorama['library_panorama'], panoPosition1, 400, imageSrc);
-    var infospot10 = new pano.Infospot(300, imageSrc);
-    infospot12.position.set(5800, 0, 200);
-    infospot12.addHoverText('Library', 40);
-    ImagePanorama['ku_admin_panorama'].add(infospot12);
+    // var infospot10 = new pano.Infospot(300, imageSrc);
+
+    infospotFunction('[Library]','ku_admin_panorama',{x:5800, y:1, z:200},80);
+
+    // infospot12.position.set(5800, 0, 200);
+    // infospot12.addHoverText('Library', 40);
+    // ImagePanorama['ku_admin_panorama'].add(infospot12);
   });
 
 
@@ -400,6 +458,41 @@ var highlightStyle = new Style({
     width: 3,
   }),
 });
+
+
+//Geolocations
+const geolocation = new Geolocation({
+  // enableHighAccuracy must be set to true to have the heading value.
+  trackingOptions: {
+    enableHighAccuracy: true,
+  },
+  projection: view.getProjection(),
+});
+const accuracyFeature = new Feature();
+geolocation.on('change:accuracyGeometry', function () {
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+});
+
+const positionFeature = new Feature();
+positionFeature.setStyle(
+  new Style({
+    image: new CircleStyle({
+      radius: 6,
+      fill: new Fill({
+        color: '#3399CC',
+      }),
+      stroke: new Stroke({
+        color: '#fff',
+        width: 2,
+      }),
+    }),
+  })
+);
+geolocation.on('change:position', function () {
+  const coordinates = geolocation.getPosition();
+  positionFeature.setGeometry(coordinates ? new Point(coordinates) : null);
+});
+
 
 var StrokecolorArray = asArray('red').slice();
 StrokecolorArray[3] = 0.0;
@@ -676,7 +769,7 @@ var RasterImg = new ImageLayer({
 */
 var wmsSource = new TileWMS({
   url: 'http://localhost:8080/geoserver/wms',
-  params: { 'LAYERS': 'ku_map:odm_orthophoto', 'TILED': true },
+  params: { 'LAYERS': 'KU:odm_orthophoto', 'TILED': true },
   serverType: 'geoserver',
 });
 
@@ -686,7 +779,41 @@ var wmsLayer = new TileLayer({
 });
 
 
+var GeoLocationLayer = new VectorLayer({
+  map: map,
+  source: new VectorSource({
+    features: [accuracyFeature, positionFeature],
+  }),
+});
 
+
+function el(id) {
+  return document.getElementById(id);
+}
+
+
+// document.querySelectorAll('.tab-selector').forEach(el => {
+  el('geo-location-icon').addEventListener('click', evt => {
+    // let IsLocation = el("geo-location-icon").value;
+      geolocation.setTracking(true);
+      const coordinates = geolocation.getPosition();
+      view.animate({
+        center: coordinates,
+        duration: 2000,
+    
+        zoom: 18.5,
+      });
+  })
+// })
+
+// el('geo-location-icon').on('change', function (e){
+//   console.log(el("geo-location-icon").value)
+//   el("geo-location-icon").value = !el("geo-location-icon")
+//   geolocation.setTracking(this.checked);
+// });
+
+
+// geolocation.setTracking(true);
 
 // var bingMap = new TileLayer({
 //   source: new BingMaps({
@@ -720,7 +847,7 @@ var map = new Map({
       units: 'degrees',
     }), mousePositionControl]),
   target: 'map',
-  layers: [BaseMap, wmsLayer, vector, points],
+  layers: [BaseMap, wmsLayer, vector, points,GeoLocationLayer],
   overlays: [overlay],
   view: view,
 
@@ -1001,7 +1128,7 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
     var Row = Btable.insertRow(row);
     if (row == 0) { Row.insertCell(0).innerHTML = "Building"; }
     else {
-      Row.insertCell(0).innerHTML = "Office" + " " + (row + 1).toString();
+      Row.insertCell(0).innerHTML = "Office" + " " + (row).toString();
     };
     const cellVal = Row.insertCell(1);
     cellVal.innerHTML = Arguments[row];
@@ -1028,7 +1155,7 @@ const tableFunction = (Btable, Building, Office1, Office2, Office3, Office4) => 
 
     });
   }
-  Btable.rows[0].cells[0].style.width = "25%";
+  Btable.rows[0].cells[0].style.width = "21%";
   if (Btable.rows[2]) {
     Btable.rows[2].cells[1].addEventListener("click", () => {
 
@@ -1431,7 +1558,7 @@ map.on('pointermove', function (evt) {
   var hit = map.forEachLayerAtPixel(pixel, function () {
     return true;
   });
-  map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+  // map.getTargetElement().style.cursor = hit ? 'pointer' : '';
 });
 
 // const ol3d = new OLCesium({ map: map }); // map is the ol.Map instance

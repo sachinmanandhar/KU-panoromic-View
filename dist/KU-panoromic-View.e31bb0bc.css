@@ -103,8 +103,8 @@
   background-color: rgba(255,255,255,0.6);
 }
 .ol-zoom {
-  top: .5em;
-  left: .5em;
+  top: 9em;
+  left: .1em;
 }
 .ol-rotate {
   top: .5em;
@@ -166,10 +166,17 @@
   background-color: rgba(0,60,136,0.7);
 }
 .ol-zoom .ol-zoom-in {
+background-color:dimgray;
   border-radius: 2px 2px 0 0;
+    width: 2em;
+    height: 2em;
 }
 .ol-zoom .ol-zoom-out {
+background-color:dimgray;
   border-radius: 0 0 2px 2px;
+
+    width: 2em;
+    height: 2em;
 }
 
 

@@ -930,10 +930,10 @@ const animateRoute = (map, coords) =>
     map.getView().animate(...steps);
 }
 
-async const SubmitFunction = (RouteName) => {
+const SubmitFunction = (RouteName) => {
 
 
- RouteDataa.routeD.features.map((data) => {
+  RouteDataa.routeD.features.map((data) => {
 
     if (data.properties.Id == RouteName) {
       var coordinates = data.geometry.coordinates[0];

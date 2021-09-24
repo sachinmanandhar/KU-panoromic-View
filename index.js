@@ -27,6 +27,7 @@ import { LineString, Point } from 'ol/geom';
 import { Feature } from 'ol';
 import Geolocation from 'ol/Geolocation';
 import {Circle as CircleStyle} from 'ol/style';
+import {inAndOut} from 'ol/easing';
 // import { selectFeatureControl } from 'ol/control';
 // import OLCesium from 'olcs/OLCesium.js';
 
@@ -896,7 +897,8 @@ function animateFeature() {
       path: path,
       rotate: 25,
       easing: easing[easing.easeIn],
-      speed: Number(0)
+      duration:3000
+      // speed: Number(0)
     });
     /** / 
     source.addFeature(f);
@@ -911,15 +913,27 @@ function animateFeature() {
     })
     /**/
     vector.animateFeature(f, anim);
+
+    var coords = SourceV.getFeatures()[0].getGeometry().getCoordinates()
+    // [[85.538376,27.620692],[85.538123,27.620332],[85.538290,27.619899],[85.538299,27.618668],[85.538766,27.618338],[85.539203,27.617537]]
+    console.log(SourceV.getFeatures()[0].getGeometry().getCoordinates())
+    animateRoute(map,coords)
   }
 }
 
 
+const animateRoute = (map, coords) =>
+{
+    console.log()
+    const steps = coords.map(coord => ({center: coord, duration: 3000/coords.length , easing: inAndOut}));
+    map.getView().setZoom(19);
+    map.getView().animate(...steps);
+}
 
-const SubmitFunction = (RouteName) => {
+async const SubmitFunction = (RouteName) => {
 
 
-  RouteDataa.routeD.features.map((data) => {
+ RouteDataa.routeD.features.map((data) => {
 
     if (data.properties.Id == RouteName) {
       var coordinates = data.geometry.coordinates[0];

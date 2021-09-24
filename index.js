@@ -951,13 +951,25 @@ const SearchFunction = () => {
     var office_three = data.properties.Office3 || "";
     var office_four = data.properties.Office4 || "";
 
+    var tags = data.properties.tags || "";
+    var tagsArray = tags.split(',');
+
     var compare1 = stringSimilarity.compareTwoStrings(building_name.toUpperCase(), VarSearch.toUpperCase());
     var compare2 = stringSimilarity.compareTwoStrings(office_one.toUpperCase(), VarSearch.toUpperCase());
     var compare3 = stringSimilarity.compareTwoStrings(office_two.toUpperCase(), VarSearch.toUpperCase());
     var compare4 = stringSimilarity.compareTwoStrings(office_three.toUpperCase(), VarSearch.toUpperCase());
     var compare5 = stringSimilarity.compareTwoStrings(office_four.toUpperCase(), VarSearch.toUpperCase());
 
-    if (compare1 > 0.9 || compare2 > 0.9 || compare3 > 0.9 || compare4 > 0.9 || compare5 > 0.9) {
+    let compare6 = 0
+    tagsArray.every(tag => {
+      compare6 = stringSimilarity.compareTwoStrings(tag.toUpperCase(), VarSearch.toUpperCase());
+      console.log(compare6,"compare 6")
+      if (compare6>0.9){return false}
+      return true
+    })
+    let TotalCompare = compare1 + compare2+ compare3 +compare4+compare5+compare6
+    console.log(TotalCompare,"total compare")
+    if (TotalCompare > 0.9) {
 
       var coordinates = data.geometry.coordinates[0];
       var LineFeature = new Feature({
@@ -968,7 +980,7 @@ const SearchFunction = () => {
       SourceV.addFeature(LineFeature);
       const SearchCoordinate = LineFeature.getGeometry().getCoordinates();
       map.getView().setCenter(SearchCoordinate[0]);
-      map.getView().setZoom(map.getView().getZoom() + 0.5);
+      map.getView().setZoom(21);
 
       panoContainer.innerHTML = ""
       var Btable = document.getElementById('BuildingTable');

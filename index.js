@@ -571,6 +571,16 @@ var sports_style = new Style({
     scale: 0.057
   })
 })
+var hotspots_style = new Style({
+  image: new Icon({
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+    src: 'image/wifi.png',
+    scale: 0.057
+  })
+})
+
 // var style_sports = new Style({
 //   fill: new Fill({
 //     color: 'rgba(0, 155, 0, 1)',
@@ -726,6 +736,17 @@ var sports_layer = new VectorLayer({
   visible: false
 })
 
+var hotsposts_source = new VectorSource({
+  url:'data/hotspots.geojson',
+  format:new GeoJSON(),
+  title:'wifi_hotspots'
+
+})
+var hotspots_layer = new VectorLayer({
+  source: hotsposts_source,
+  style: hotspots_style,
+  visible: false
+})
 var getCoordinates = (key, value, source) => {
   var features = source.getFeatures().find(feature => feature.get(key) === value);
   if (features) {
@@ -856,6 +877,7 @@ var map = new Map({
 map.addLayer(campusAttraction);
 map.addLayer(parking);
 map.addLayer(sports_layer);
+map.addLayer(hotspots_layer);
 /*
 var routeValue=RouteSelect.value;
 return routeValue;
@@ -1408,7 +1430,9 @@ document.getElementById('parking').onclick = () => {
 document.getElementById('sports').onclick = () => {
   LayerOnOff('sports', sports_layer);
 };
-
+document.getElementById('wifiCheckbox').onclick = () => {
+  LayerOnOff('wifiCheckbox', hotspots_layer);
+};
 
 
 // document.getElementById('ku_corner_campus').onclick = () => {
